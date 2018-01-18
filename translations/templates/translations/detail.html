@@ -9,6 +9,15 @@
         <source src="{% static video.video_url %}" type="video/webm">
     </video>
     Votes: {{ video.votes }}
+
+    <form action="{% url 'translations:vote' video.id %}" method="post">
+        {% csrf_token %}
+        <button name="vote" value="1">Vote up</button>
+        <button name="vote" value="-1">Vote down</button>
+
+        <input type="submit" value="Vote" />
+    </form>
+
     <br>
     {% for word_video in video.words.all %}
         {{ word_video }};

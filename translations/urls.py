@@ -9,4 +9,5 @@ urlpatterns = [
     path('', views.index, name='index'),
     # ex: /translations/5/
     path('<int:word_id>/', views.detail, name='detail'),
+    path('<int:video_id>/vote/', views.vote, name='vote'),
 ]

@@ -46,18 +46,22 @@
     <div class="container" id="main-list">
       <div class="row text-center">
         <div class="col">
+          {% if new_videos %}
             <h3 class="text-center">Новые видео</h3>
-          <ol>
-            <li class="px-4">
-              <a href="#">Video name1</a>
-            </li>
-            <li class="px-4">
-              <a href="#">Video name1</a>
-            </li>
-            <li class="px-4">
-              <a href="#">Video name1</a>
-            </li>
-          </ol>
+            <ol>
+              {% for new_video in new_videos %}
+                <li class="px-4">
+                  <a href="#">{{ new_video }}</a>
+                  <br>
+                  {% for video_word in new_video.words.all %}
+                    <a href="{% url 'translations:detail' video_word.id %}">{{ video_word.word_text }}</a>
+                  {% endfor %}
+                </li>
+              {% endfor %}
+            </ol>
+          {% else %}
+            <h3 class="text-center">Нет новых видео</h3>
+          {% endif %}
         </div>
         <div class="col">
           <h3 class="text-center">Набирающие популярность</h3>
