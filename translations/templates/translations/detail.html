@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+
+{{ word }}
+{% load static %}
+{% for video in videos %}
+    <br>
+    <video width="300" height="300" controls autoplay>
+        <source src="{% static video.video_url %}" type="video/webm">
+    </video>
+    Votes: {{ video.votes }}
+    <br>
+    {% for word_video in video.words.all %}
+        {{ word_video }};
+    {% endfor %}
+    <br>
+{% endfor %}
+
+{% endblock %}

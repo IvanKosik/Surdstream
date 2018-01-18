@@ -1,0 +1,85 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'translations/css/translations.css' %}">
+    <script src="{% static 'translations/js/holder/holder.js' %}"></script>
+
+    <title>Surdstream</title>
+  </head>
+  <body>
+
+    <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
+      <!-- Navbar content -->
+      <a class="navbar-brand" href="#">Surdstream</a>
+      <div class="container">
+        <ul class="navbar-nav navbar-dark">
+          <li class="nav-item"><a class="nav-link" href='#'>Main</a></li>
+          <li class="nav-item"><a class="nav-link" href='#'>Words</a></li>
+          <li class="nav-item"><a class="nav-link" href='#'>About Us</a></li>
+        </ul>
+      </div>
+      <a class="ml-2" href="#">
+        <img class="rounded-circle" src="holder.js/50x50"/>
+      </a>
+      <a class="ml-2" href="#">
+        <img class="rounded-circle" src="holder.js/50x50"/>
+      </a>
+    </nav>
+
+    <div class="jumbotron jumbotron-fluid">
+      <div class="container">
+        <div class="row" id="search">
+          <h1 class="col-3 display-3 px-4 text-right">Поиск</h1>
+          <input class="col-9 px-4 border border-warning" type="search" placeholder="Введите слово" aria-label="Search">
+        </div>
+      </div>
+    </div>
+
+    <div class="container" id="main-list">
+      <div class="row text-center">
+        <div class="col">
+            <h3 class="text-center">Новые видео</h3>
+          <ol>
+            <li class="px-4">
+              <a href="#">Video name1</a>
+            </li>
+            <li class="px-4">
+              <a href="#">Video name1</a>
+            </li>
+            <li class="px-4">
+              <a href="#">Video name1</a>
+            </li>
+          </ol>
+        </div>
+        <div class="col">
+          <h3 class="text-center">Набирающие популярность</h3>
+          <ol>
+            <li class="px-4">
+              <a href="#">Video name1</a>
+            </li>
+            <li class="px-4">
+              <a href="#">Video name1</a>
+            </li>
+            <li class="px-4">
+              <a href="#">Video name1</a>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+  </body>
+</html>
