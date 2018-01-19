@@ -124,6 +124,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+AUTH_USER_MODEL = 'translations.User'
+
 # Redirect to home URL after login (default redirects to /accounts/profile/)
 LOGIN_REDIRECT_URL = '/'
 
