@@ -1,9 +1,39 @@
-/*
-h1 {
-  color: orange;
+#search {
+  font-family: cursive;
 }
 
-body {
-  padding-top: 66px;
+#search input {
+  font-size: 48px;
 }
-*/
+
+.jumbotron {
+  margin-bottom: 0;
+  background-color: white;
+}
+
+.publication {
+  margin: 0;
+  width: 100%;
+  background-color: orange;
+}
+
+.video_placeholder {
+  display: none;
+  padding: 10px;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+p {
+  margin: 0;
+  text-transform: uppercase;
+}
+
+iframe {
+  width: 500px;
+  height: 280px;
+}
