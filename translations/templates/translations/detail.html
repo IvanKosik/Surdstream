@@ -4,7 +4,7 @@
 {% load static %}
 
 {{ word }}
-{% for video in videos %}
+{% for video, vote in videos_and_votes %}
     <br>
     <video width="300" height="300" controls autoplay>
         <source src="{% static video.video_url %}" type="video/webm">
@@ -12,13 +12,23 @@
     <form action="{% url 'translations:vote' video.id %}" method="post">
         {% csrf_token %}
         Votes: {{ video.votes }}
-
-        {% if not user.is_authenticated %}
+        <br>
+        {% if user.is_authenticated %}
+            User vote: {{ vote }}
+            {% if vote == 1 %}
+                <button name="vote" value="1" disabled>Vote up</button>
+            {% else %}
+                <button name="vote" value="1">Vote up</button>
+            {% endif %}
+            {% if vote == -1 %}
+                <button name="vote" value="-1" disabled>Vote down</button>
+            {% else %}
+                <button name="vote" value="-1">Vote down</button>
+            {% endif %}
+        {% else %}
+            User not logined
             <button name="vote" value="1" title="Login, please" disabled>Vote up</button>
             <button name="vote" value="-1" title="Login, please" disabled>Vote down</button>
-        {% else %}
-            <button name="vote" value="1">Vote up</button>
-            <button name="vote" value="-1">Vote down</button>
         {% endif %}
     </form>
 

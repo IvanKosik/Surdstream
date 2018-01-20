@@ -4,6 +4,7 @@ from django.contrib.auth.models import AbstractUser
 
 
 class User(AbstractUser):
+    # def video_vote_value(self, video_id: int):
     pass
 #    rated_videos = models.ManyToManyField('TranslationVideo', related_name='voted_users', through='UserVote')
 
@@ -38,9 +39,18 @@ class TranslationVideo(models.Model):
     def new_videos():
         return TranslationVideo.objects.order_by('upload_date')[:5]
 
+    def user_vote_value(self, user_id: int) -> int:
+        user_vote_records = UserVote.objects.filter(user_id=user_id, video=self)
+        assert len(user_vote_records) <= 1, \
+            'There can be only one record of UserVote for the specific user and the video'
+        return user_vote_records[0].vote if user_vote_records else 0
+
 
 class UserVote(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     video = models.ForeignKey(TranslationVideo, on_delete=models.CASCADE)
     vote = models.IntegerField()
     last_modified_date = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        unique_together = ("user", "video")
