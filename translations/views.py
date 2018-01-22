@@ -1,6 +1,8 @@
 from .models import Word, TranslationVideo, UserVote
 
 from django.shortcuts import render, get_object_or_404
+from django.http import JsonResponse
+from django.views.decorators.csrf import ensure_csrf_cookie
 
 
 def index(request):
@@ -9,6 +11,7 @@ def index(request):
     return render(request, 'translations/index.html', context)
 
 
+@ensure_csrf_cookie
 def detail(request, word_id):
     word = get_object_or_404(Word, pk=word_id)
     word_videos = word.videos.all()
@@ -34,8 +37,11 @@ def vote(request, video_id):
     )
     video.votes += new_delta_vote - old_vote_value
     video.save()
-    return render(request, 'translations/vote_results.html', {'video': video,
-                                                              'delta_vote': new_delta_vote})
+#    return render(request, 'translations/vote_results.html', {'video': video,
+#                                                              'delta_vote': new_delta_vote})
+    data = {'new_total_votes': video.votes,
+            'user_vote': new_delta_vote}
+    return JsonResponse(data)
 
 
 def profile(request):

@@ -4,33 +4,30 @@
 {% load static %}
 
 {{ word }}
-{% for video, vote in videos_and_votes %}
+{% for video, user_vote in videos_and_votes %}
     <br>
     <video width="300" height="300" controls autoplay>
         <source src="{% static video.video_url %}" type="video/webm">
     </video>
-    <form action="{% url 'translations:vote' video.id %}" method="post">
-        {% csrf_token %}
-        Votes: {{ video.votes }}
-        <br>
-        {% if user.is_authenticated %}
-            User vote: {{ vote }}
-            {% if vote == 1 %}
-                <button name="vote" value="1" disabled>Vote up</button>
-            {% else %}
-                <button name="vote" value="1">Vote up</button>
-            {% endif %}
-            {% if vote == -1 %}
-                <button name="vote" value="-1" disabled>Vote down</button>
-            {% else %}
-                <button name="vote" value="-1">Vote down</button>
-            {% endif %}
-        {% else %}
-            User not logined
-            <button name="vote" value="1" title="Login, please" disabled>Vote up</button>
-            <button name="vote" value="-1" title="Login, please" disabled>Vote down</button>
-        {% endif %}
-    </form>
+    <br>
+    Votes: <span id="total-votes">{{ video.votes }}</span>
+    <br>
+    {% if user.is_authenticated %}
+        User vote: <span id="user-vote">{{ user_vote }}</span>
+
+        <button name="vote" value="1"
+                id="vote-up" class="js-process-vote"
+                vote-url="{% url 'translations:vote' video.id %}"
+                {% if user_vote == 1 %} disabled {% endif %}>Vote up</button>
+        <button name="vote" value="-1"
+                id="vote-down" class="js-process-vote"
+                vote-url="{% url 'translations:vote' video.id %}"
+                {% if user_vote == -1 %} disabled {% endif %}>Vote down</button>
+    {% else %}
+        User not logged in
+        <button name="vote" value="1" title="Login, please" disabled>Vote up</button>
+        <button name="vote" value="-1" title="Login, please" disabled>Vote down</button>
+    {% endif %}
 
     <br>
     {% for word_video in video.words.all %}
@@ -38,5 +35,10 @@
     {% endfor %}
     <br>
 {% endfor %}
+
+<script src="https://code.jquery.com/jquery-3.3.0.min.js"
+        integrity="sha256-RTQy8VOmNlT6b2PIRur37p6JEBZUE7o8wPgMvu18MC4="
+        crossorigin="anonymous"></script>
+<script src="{% static 'translations/js/ajax-handlers.js' %}"></script>
 
 {% endblock %}
