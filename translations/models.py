@@ -21,6 +21,7 @@ class Word(models.Model):
 
 
 class TranslationVideo(models.Model):
+    author = models.ForeignKey(User, models.SET_NULL, blank=True, null=True)
     words = models.ManyToManyField(Word, related_name='videos')
     video_url = models.CharField(max_length=500)
     votes = models.IntegerField(default=0)
@@ -54,3 +55,10 @@ class UserVote(models.Model):
 
     class Meta:
         unique_together = ("user", "video")
+
+    @staticmethod
+    def rollback_user_votes(user: User):
+        user_vote_records = UserVote.objects.filter(user=user)
+        for user_vote_record in user_vote_records:
+            user_vote_record.video.votes -= user_vote_record.vote
+            user_vote_record.video.save()

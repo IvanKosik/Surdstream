@@ -22,24 +22,12 @@ def detail(request, word_id):
 
 
 def vote(request, video_id):
-    video = get_object_or_404(TranslationVideo, pk=video_id)
     new_delta_vote = int(request.POST['vote'])
-
-    try:
-        old_user_vote = UserVote.objects.get(user=request.user, video=video)
-        old_vote_value = old_user_vote.vote
-    except UserVote.DoesNotExist:
-        old_vote_value = 0
-
     user_vote, created = UserVote.objects.update_or_create(
-        user=request.user, video=video,
+        user=request.user, video_id=video_id,
         defaults={'vote': new_delta_vote},
     )
-    video.votes += new_delta_vote - old_vote_value
-    video.save()
-#    return render(request, 'translations/vote_results.html', {'video': video,
-#                                                              'delta_vote': new_delta_vote})
-    data = {'new_total_votes': video.votes,
+    data = {'new_total_votes': user_vote.video.votes,
             'user_vote': new_delta_vote}
     return JsonResponse(data)
 
