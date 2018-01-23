@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-# from django.contrib.auth.models import User
 
 
 class User(AbstractUser):
@@ -33,7 +32,6 @@ class TranslationVideo(models.Model):
         for w in self.words.all():
             words_str += w.word_text + ', '
         words_str += ']'
-        print('WORDS: ', self.words.all())
         return 'Video ' + self.video_url + ' ' + words_str
 
     @staticmethod
