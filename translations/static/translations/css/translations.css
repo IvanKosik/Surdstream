@@ -6,6 +6,165 @@
   font-size: 48px;
 }
 
+.search-div {
+  position: relative;
+  overflow: hidden;
+}
+
+.search-div > div {
+  position: absolute;
+}
+
+#logIn {
+  background-color: black;
+  transform: translateX(-100%);
+}
+
+#signIn {
+  background-color: green;
+  transform: translateX(+100%);
+}
+
+.logInVisible {
+  animation: toRight 1s forwards ease;
+  z-index: 1;
+}
+
+.logInHidden {
+  animation: toLeft 1s forwards ease;
+  z-index: 0;
+}
+
+.searchHiddenToLeft {
+  animation: right 1s forwards ease;
+  z-index: 0;
+}
+
+.searchVisibleFromLeft {
+  animation: back 1s forwards ease;
+  z-index: 1;
+}
+
+.searchHiddenToRight {
+  animation: toLeft 1s forwards ease;
+  z-index: 0;
+}
+
+.searchVisibleFromRight {
+  animation: leftFrom-100 1s forwards ease;
+  z-index: 1;
+}
+
+.signInVisible {
+  animation: from100 1s forwards ease;
+  z-index: 1;
+}
+
+.signInHidden {
+  animation: to100 1s forwards ease;
+  z-index: 0;
+}
+
+@keyframes from100 {
+  0% {
+    transform: translateX(+100%);
+  }
+  100% {
+    transform-origin: right;
+    transform: translateX(0%);
+  }
+}
+
+@keyframes to100 {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform-origin: right;
+    transform: translateX(+100%);
+  }
+}
+
+@keyframes from100 {
+  0% {
+    transform: translateX(+100%);
+  }
+  100% {
+    transform-origin: right;
+    transform: translateX(0%);
+  }
+}
+
+@keyframes to100 {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform-origin: right;
+    transform: translateX(+100%);
+  }
+}
+
+@keyframes toRight {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform-origin: right;
+    transform: translateX(0%);
+  }
+}
+
+@keyframes toLeft {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform-origin: right;
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes back {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform-origin: left;
+    transform: translateX(0%);
+  }
+}
+
+@keyframes right {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform-origin: left;
+    transform: translateX(100%);
+  }
+}
+
+@keyframes leftTo-100 {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform-origin: left;
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes leftFrom-100 {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform-origin: left;
+    transform: translateX(0%);
+  }
+}
+
 .jumbotron {
   margin-bottom: 0;
   background-color: white;
