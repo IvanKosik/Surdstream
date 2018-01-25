@@ -1,5 +1,14 @@
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+}
+
 #search {
   font-family: cursive;
+  padding: 64px 0;
 }
 
 #search input {
@@ -7,12 +16,15 @@
 }
 
 .search-div {
+  height: 215px;
   position: relative;
   overflow: hidden;
+  padding: 0;
 }
 
 .search-div > div {
   position: absolute;
+  overflow: hidden;
 }
 
 #logIn {
@@ -195,4 +207,75 @@ p {
 iframe {
   width: 500px;
   height: 280px;
+}
+
+#menu_login {
+  position: relative;
+  width: 10%;
+  text-align: center;
+  overflow: hidden;
+  height: 28px;
+}
+
+#menu_login > div:first-child {
+  position: absolute;
+}
+
+#menu_login > div:last-child {
+  position: absolute;
+  transform: translateY(-100%);
+  color: white;
+}
+
+.authPlaceholderVisible {
+  animation: auth_placeholder 1s forwards ease;
+}
+
+.authButonsHidden {
+  animation: auth_button 1s forwards ease;
+}
+
+.authPlaceholderHidden {
+  animation: auth_placeholder_back 1s forwards ease;
+}
+
+.authButonsVisible {
+  animation: auth_button_back 1s forwards ease;
+}
+
+
+@keyframes auth_placeholder {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+
+@keyframes auth_button {
+  0% {
+    transform: translateY(0%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes auth_placeholder_back {
+  0% {
+    transform: translateY(0%);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+@keyframes auth_button_back {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
 }
