@@ -3,34 +3,53 @@
   {% block content %}
 
     <div class="container">
-          <h4>Последние видео</h4>
-          <ul>
-            <li>
-              <div class='row publication'>
-                <p class="col-6 text-left"><span>+</span><span>Рука&nbsp;</span>нога,тело,мерка</p>
-                <p class="col-6 text-right">Author</p>
-                <div class="col-12 video_placeholder">
-                  <div class="row">
-                    <div class="col-6 text-center">
-                      <iframe src="https://www.youtube.com/embed/tgbNymZ7vqY"></iframe>
-                      <p><a href='#'>+</a>&nbsp;<span>9999</span>&nbsp;<a href='#'>-</a></p>
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">        <h4>Последние видео</h4></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false"><h4>Набирающие популярность</h4></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false"><h4>Лучшие видео</h4></a>
+      </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+
+        <ul>
+          <li>
+            <div class='row publication'>
+              <p class="col-6 text-left"><span>+</span><span>Рука&nbsp;</span>нога,тело,мерка</p>
+              <p class="col-6 text-right">Author</p>
+              <div class="col-12 video_placeholder">
+                <div class="row">
+                  <div class="col-6 text-center">
+                    <iframe src="https://www.youtube.com/embed/tgbNymZ7vqY"></iframe>
+                    <p><a href='#'>+</a>&nbsp;<span>9999</span>&nbsp;<a href='#'>-</a></p>
+                  </div>
+                  <div class="col-6">
+                    <div style="height:70%; background-color:blue">
+                      <p>Comment1</p>
+                      <p>Comment2</p>
                     </div>
-                    <div class="col-6">
-                      <div style="height:70%; background-color:blue">
-                        <p>Comment1</p>
-                        <p>Comment2</p>
-                      </div>
-                      <div style="height:30%; background-color:green">
-                        <input type='text'/>
-                        <button>Send</button>
-                      </div>
+                    <div style="height:30%; background-color:green">
+                      <input type='text'/>
+                      <button>Send</button>
                     </div>
                   </div>
                 </div>
               </div>
-            </li>
-          </ul>
+            </div>
+          </li>
+        </ul>
+
+      </div>
+      <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">2</div>
+      <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">3</div>
     </div>
+  </div>
+</div>
 
 
 
