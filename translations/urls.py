@@ -7,6 +7,8 @@ app_name = 'translations'
 urlpatterns = [
     # ex: /translations/
     path('', views.index, name='index'),
+    # ex: /translations/new
+    path('new/', views.add_translation, name='add_translation'),
     # ex: /translations/5/
     path('<int:word_id>/', views.detail, name='detail'),
     path('<int:video_id>/vote/', views.vote, name='vote'),

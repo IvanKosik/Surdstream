@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+
+{% load static %}
+
+<h1>New translation</h1>
+
+<form method="POST" enctype="multipart/form-data">{% csrf_token %}
+    Words: <input name="words" type="text" size="50">
+    <br>
+    <br>
+    <input id="file-input" name="file" type="file" accept=".webm, .avi, .mp4">
+    <br>
+    <br>
+    Max file size: 5 MB
+    <br>
+    Supported formats: *.webm, *.ogg, *.avi, *.mp4
+    <br>
+    <br>
+    <button id="upload" type="submit" class="save btn btn-default" disabled>Upload</button>
+</form>
+
+
+<script src="https://code.jquery.com/jquery-3.3.0.min.js"
+        integrity="sha256-RTQy8VOmNlT6b2PIRur37p6JEBZUE7o8wPgMvu18MC4="
+        crossorigin="anonymous"></script>
+<script src="{% static 'translations/js/new.js' %}"></script>
+
+{% endblock %}
