@@ -9,7 +9,7 @@ class User(AbstractUser):
 
 
 class Word(models.Model):
-    word_text = models.CharField(max_length=200)
+    word_text = models.CharField(max_length=200, unique=True)
 
     def __str__(self):
         return self.word_text
@@ -22,7 +22,8 @@ class Word(models.Model):
 class TranslationVideo(models.Model):
     author = models.ForeignKey(User, models.SET_NULL, blank=True, null=True)
     words = models.ManyToManyField(Word, related_name='videos')
-    video_url = models.CharField(max_length=500)
+#    video_url = models.CharField(max_length=500)
+    video_file = models.FileField(upload_to='videos/%Y/%m/', max_length=150)
     votes = models.IntegerField(default=0)
     voted_users = models.ManyToManyField(User, related_name='rated_videos', through='UserVote')
     upload_date = models.DateTimeField(auto_now_add=True)
@@ -32,7 +33,7 @@ class TranslationVideo(models.Model):
         for w in self.words.all():
             words_str += w.word_text + ', '
         words_str += ']'
-        return 'Video ' + self.video_url + ' ' + words_str
+        return 'Video ' + self.video_file.url + ' ' + words_str
 
     @staticmethod
     def new_videos():

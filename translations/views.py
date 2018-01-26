@@ -1,7 +1,7 @@
 from .models import Word, TranslationVideo, UserVote
 
-from django.shortcuts import render, get_object_or_404
-from django.http import JsonResponse
+from django.shortcuts import render, get_object_or_404, redirect
+from django.http import JsonResponse, HttpResponse
 from django.views.decorators.csrf import ensure_csrf_cookie
 
 
@@ -34,3 +34,19 @@ def vote(request, video_id):
 
 def profile(request):
     return render(request, 'accounts/profile.html', {'user': request.user})
+
+
+def add_translation(request):
+    if request.method == 'POST':
+        words = [w.strip() for w in request.POST['words'].split(',') if w.strip()]
+        file = request.FILES['file']
+        if file.size < 5242880 and words:  # 5 MB
+            video_record = TranslationVideo(author=request.user, video_file=file)
+            video_record.save()
+            for word_text in words:
+                word, created = Word.objects.get_or_create(word_text=word_text)
+                video_record.words.add(word)
+            return redirect(profile)
+        else:
+            return HttpResponse(status=413)
+    return render(request, 'translations/new.html', {})
