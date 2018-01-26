@@ -26,19 +26,56 @@
           <li class="nav-item"><a class="nav-link" href='#'>F.A.Q</a></li>
         </ul>
       </div>
+      <!--
       <a class="ml-2" href="#">
         <img class="rounded-circle" src="holder.js/50x50"/>
       </a>
       <a class="ml-2" href="#">
         <img class="rounded-circle" src="holder.js/50x50"/>
-      </a>
+      </a>-->
+      <div id="menu_login">
+        <div>
+          <button id="logInButton">Log In</button>
+          <button id="signInButton">Sign In</button>
+        </div>
+        <div>
+          Авторизация
+        </div>
+      </div>
     </nav>
 
-    <div class="jumbotron jumbotron-fluid">
-      <div class="container">
-        <div class="row" id="search">
-          <h1 class="col-3 display-3 px-4 text-right">Поиск</h1>
-          <input class="col-9 px-4 border border-warning" type="search" placeholder="Введите слово" aria-label="Search">
+    <div class="jumbotron jumbotron-fluid search-div">
+      <div class="container-fluid" id="search">
+        <div class="container">
+          <div class="row">
+            <h1 class="col-4 display-3 px-4">Поиск</h1>
+            <input class="col-8 px-4 border border-warning" type="search" placeholder="Введите слово" aria-label="Search">
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid" id="logIn">
+        <div class="container">
+          <button id="closeLogInButton" type="button" class="close" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <form>
+            <input type="text" placeholder="Email" />
+            <input type="password" placeholder="password" />
+            <button>Submit</button>
+          </form>
+        </div>
+      </div>
+      <div class="container-fluid" id="signIn">
+        <div class="container">
+          <button id="closeSignInButton" type="button" class="close" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <form>
+            <input type="text" placeholder="Email" />
+            <input type="password" placeholder="Password" />
+            <input type="password" placeholder="Confirm" />
+            <button>Submit</button>
+          </form>
         </div>
       </div>
     </div>

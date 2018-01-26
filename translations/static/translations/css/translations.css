@@ -1,9 +1,196 @@
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+}
+
 #search {
   font-family: cursive;
+  padding: 64px 0;
 }
 
 #search input {
   font-size: 48px;
+}
+
+.search-div {
+  height: 215px;
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+}
+
+.search-div > div {
+  position: absolute;
+  overflow: hidden;
+}
+
+#logIn {
+  transform: translateX(-100%);
+}
+
+#logIn form, #signIn form {
+  text-align: center;
+  margin: auto;
+  width: 50%;
+  margin-top: 30px;
+  border: 1px solid;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+#signIn form {
+  margin-top: 15px;
+}
+
+#logIn form input, #signIn form input {
+  width: 100%;
+}
+
+#signIn {
+  transform: translateX(+100%);
+}
+
+.logInVisible {
+  animation: toRight 1s forwards ease;
+  z-index: 1;
+}
+
+.logInHidden {
+  animation: toLeft 1s forwards ease;
+  z-index: 0;
+}
+
+.searchHiddenToLeft {
+  animation: right 1s forwards ease;
+  z-index: 0;
+}
+
+.searchVisibleFromLeft {
+  animation: back 1s forwards ease;
+  z-index: 1;
+}
+
+.searchHiddenToRight {
+  animation: toLeft 1s forwards ease;
+  z-index: 0;
+}
+
+.searchVisibleFromRight {
+  animation: leftFrom-100 1s forwards ease;
+  z-index: 1;
+}
+
+.signInVisible {
+  animation: from100 1s forwards ease;
+  z-index: 1;
+}
+
+.signInHidden {
+  animation: to100 1s forwards ease;
+  z-index: 0;
+}
+
+@keyframes from100 {
+  0% {
+    transform: translateX(+100%);
+  }
+  100% {
+    transform-origin: right;
+    transform: translateX(0%);
+  }
+}
+
+@keyframes to100 {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform-origin: right;
+    transform: translateX(+100%);
+  }
+}
+
+@keyframes from100 {
+  0% {
+    transform: translateX(+100%);
+  }
+  100% {
+    transform-origin: right;
+    transform: translateX(0%);
+  }
+}
+
+@keyframes to100 {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform-origin: right;
+    transform: translateX(+100%);
+  }
+}
+
+@keyframes toRight {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform-origin: right;
+    transform: translateX(0%);
+  }
+}
+
+@keyframes toLeft {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform-origin: right;
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes back {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform-origin: left;
+    transform: translateX(0%);
+  }
+}
+
+@keyframes right {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform-origin: left;
+    transform: translateX(100%);
+  }
+}
+
+@keyframes leftTo-100 {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform-origin: left;
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes leftFrom-100 {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform-origin: left;
+    transform: translateX(0%);
+  }
 }
 
 .jumbotron {
@@ -36,4 +223,75 @@ p {
 iframe {
   width: 500px;
   height: 280px;
+}
+
+#menu_login {
+  position: relative;
+  width: 10%;
+  text-align: center;
+  overflow: hidden;
+  height: 28px;
+}
+
+#menu_login > div:first-child {
+  position: absolute;
+}
+
+#menu_login > div:last-child {
+  position: absolute;
+  transform: translateY(-100%);
+  color: white;
+}
+
+.authPlaceholderVisible {
+  animation: auth_placeholder 1s forwards ease;
+}
+
+.authButonsHidden {
+  animation: auth_button 1s forwards ease;
+}
+
+.authPlaceholderHidden {
+  animation: auth_placeholder_back 1s forwards ease;
+}
+
+.authButonsVisible {
+  animation: auth_button_back 1s forwards ease;
+}
+
+
+@keyframes auth_placeholder {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+
+@keyframes auth_button {
+  0% {
+    transform: translateY(0%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes auth_placeholder_back {
+  0% {
+    transform: translateY(0%);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+@keyframes auth_button_back {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
 }
