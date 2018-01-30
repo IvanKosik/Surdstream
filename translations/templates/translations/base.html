@@ -28,26 +28,29 @@
           <li class="nav-item"><a class="nav-link" href='#'>F.A.Q</a></li>
         </ul>
       </div>
-      <!-- AFTER LOGIN -->
-      <a class="nav-image ml-2" href="#" title="Добавить слово" data-toggle="modal" data-target="#exampleModalCenter">
-        <img class="rounded-circle" src="{% static 'translations/img/plus.png' %}"/>
-      </a>
 
-      <a class="nav-image ml-2" href="#">
-        <img class="rounded-circle" src="holder.js/50x50"/>
-        <span class="oi oi-menu" title="menu" aria-hidden="true"></span>
-      </a>
+      {% if user.is_authenticated %}
+        <!-- AFTER LOGIN -->
+        <a class="nav-image ml-2" href="#" title="Добавить слово" data-toggle="modal" data-target="#exampleModalCenter">
+          <img class="rounded-circle" src="{% static 'translations/img/plus.png' %}"/>
+        </a>
 
-      <!-- BEFORE LOGIN -->
-      <!--<div id="menu_login">
-        <div>
-          <button id="logInButton">Log In</button>
-          <button id="signInButton">Sign In</button>
+        <a class="nav-image ml-2" href="#">
+          <img class="rounded-circle" src="holder.js/50x50"/>
+          <span class="oi oi-menu" title="menu" aria-hidden="true"></span>
+        </a>
+      {% else %}
+        <!-- BEFORE LOGIN -->
+        <div id="menu_login">
+          <div>
+            <button id="logInButton">Log In</button>
+            <button id="signInButton">Sign In</button>
+          </div>
+          <div>
+
+          </div>
         </div>
-        <div>
-
-        </div>
-      </div>-->
+      {% endif %}
     </nav>
 
     <div class="jumbotron jumbotron-fluid search-div">

@@ -7,7 +7,7 @@
 {% for video, user_vote in videos_and_votes %}
     <br>
     <video width="300" height="300" controls autoplay>
-        <source src="{% static video.video_url %}" type="video/webm">
+        <source src="{{ video.video_file.url }}" type="video/webm">
     </video>
     <br>
     Votes: <span id="total-votes">{{ video.votes }}</span>

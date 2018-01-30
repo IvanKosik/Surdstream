@@ -18,8 +18,7 @@ def detail(request, word_id):
     word_videos = word.videos.all()
     user_votes = [video.user_vote_value(request.user.id) for video in word_videos]
     return render(request, 'translations/detail.html',
-                  {'word': word, 'videos_and_votes': list(zip(word_videos, user_votes)),
-                   'user': request.user})
+                  {'word': word, 'videos_and_votes': list(zip(word_videos, user_votes))})
 
 
 def vote(request, video_id):
@@ -35,7 +34,7 @@ def vote(request, video_id):
 
 @login_required
 def profile(request):
-    return render(request, 'accounts/profile.html', {'user': request.user})
+    return render(request, 'accounts/profile.html', {})
 
 
 @login_required
