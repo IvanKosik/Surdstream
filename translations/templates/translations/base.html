@@ -10,6 +10,8 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'translations/css/translations.css' %}">
+    <link rel="stylesheet" href="{% static 'translations/css/modal-add.css' %}">
+    <link rel="stylesheet" href="{% static 'translations/css/open-iconic/font/css/open-iconic-bootstrap.css' %}">
     <script src="{% static 'translations/js/holder/holder.js' %}"></script>
     <title>Surdstream</title>
   </head>
@@ -26,22 +28,26 @@
           <li class="nav-item"><a class="nav-link" href='#'>F.A.Q</a></li>
         </ul>
       </div>
-      <!--
-      <a class="ml-2" href="#">
-        <img class="rounded-circle" src="holder.js/50x50"/>
+      <!-- AFTER LOGIN -->
+      <a class="nav-image ml-2" href="#" title="Добавить слово" data-toggle="modal" data-target="#exampleModalCenter">
+        <img class="rounded-circle" src="{% static 'translations/img/plus.png' %}"/>
       </a>
-      <a class="ml-2" href="#">
+
+      <a class="nav-image ml-2" href="#">
         <img class="rounded-circle" src="holder.js/50x50"/>
-      </a>-->
-      <div id="menu_login">
+        <span class="oi oi-menu" title="menu" aria-hidden="true"></span>
+      </a>
+
+      <!-- BEFORE LOGIN -->
+      <!--<div id="menu_login">
         <div>
           <button id="logInButton">Log In</button>
           <button id="signInButton">Sign In</button>
         </div>
         <div>
-          Авторизация
+
         </div>
-      </div>
+      </div>-->
     </nav>
 
     <div class="jumbotron jumbotron-fluid search-div">
@@ -84,6 +90,27 @@
 
     {% endblock %}
 
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Добавить слово</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <label for="word-list">Слова:</label><input name="word-list" type="text" /></br>
+            <label for="word-video">Видео:</label><input name="word-video" type="file" />
+          </div>
+          <div class="modal-footer text-center">
+            <button type="button" class="btn btn-primary">Сохранить</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script
@@ -93,5 +120,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
     <script src="{% static 'translations/js/main.js' %}"></script>
+    <script src="{% static 'translations/js/modal-add.js' %}"></script>
   </body>
 </html>
