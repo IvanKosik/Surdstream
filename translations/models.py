@@ -46,6 +46,18 @@ class TranslationVideo(models.Model):
         return user_vote_records[0].vote if user_vote_records else 0
 
 
+class DeletedTranslationVideo(models.Model):
+    author_name = models.CharField(max_length=100, blank=True, null=True)
+    words = models.CharField(max_length=200)
+    video_file = models.FileField(max_length=150) #(upload_to='deleted_videos/%Y/%m/', max_length=150)
+    votes = models.IntegerField()
+    upload_date = models.DateTimeField()
+    deleting_date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return 'DeletedVideo ' + self.video_file.url + ' ' + self.words
+
+
 class UserVote(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     video = models.ForeignKey(TranslationVideo, on_delete=models.CASCADE)

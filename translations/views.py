@@ -3,6 +3,7 @@ from .models import Word, TranslationVideo, UserVote
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import JsonResponse, HttpResponse
 from django.views.decorators.csrf import ensure_csrf_cookie
+from django.contrib.auth.decorators import login_required
 
 
 def index(request):
@@ -32,10 +33,12 @@ def vote(request, video_id):
     return JsonResponse(data)
 
 
+@login_required
 def profile(request):
     return render(request, 'accounts/profile.html', {'user': request.user})
 
 
+@login_required
 def add_translation(request):
     if request.method == 'POST':
         words = [w.strip() for w in request.POST['words'].split(',') if w.strip()]
