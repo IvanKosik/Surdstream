@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Scripts -->
+    <script src="https://use.fontawesome.com/5c53ecf2e9.js"></script>
+
+
+    <title>Surdstream</title>
+    <style>
+
+      html {
+        position: relative;
+        min-height: 100%;
+      }
+
+      body {
+        margin-top: 60px;
+        margin-bottom: 60px;
+      }
+
+      #search {
+        padding: 10px;
+      }
+
+      #page-menu .row div:nth-child(2) p {
+        margin: .5rem 0;
+        font-size: 1.5rem;
+      }
+
+      .card {
+        border-radius: 0;
+      }
+
+      .card-body {
+        padding: 0.5rem;
+      }
+
+      .card-body .row {
+        padding: 0 15px;
+      }
+
+      .card:not(:last-child) {
+        border-bottom: 0;
+      }
+
+      .card-header {
+        padding: 0;
+        border-bottom: 0;
+      }
+
+      #accordion button {
+        width: 100%;
+      }
+
+      .footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        /* Set the fixed height of the footer here */
+        height: 60px;
+        line-height: 60px; /* Vertically center the text there */
+        background-color: #f5f5f5;
+      }
+
+
+
+    </style>
+  </head>
+  <body>
+    <nav class="navbar fixed-top navbar-light bg-light">
+      <a class="navbar-brand" href="#">Surdstream</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link active" href="#page-menu">Главная<span class="sr-only">(current)</span></a>
+          <a class="nav-item nav-link" href="wordlist">Все слова</a>
+          <a class="nav-item nav-link" href="support">Помощь</a>
+        </div>
+      </div>
+    </nav>
+
+    <div id="search" class="container">
+      <!-- Content here -->
+      <div class="input-group input-group-lg">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-lg">Поиск</span>
+        </div>
+        <input type="text" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm" placeholder="Введите слово">
+      </div>
+
+    </div>
+
+    <main class="container">
+
+      <div id="page-menu">
+        <!-- Content here -->
+        <div class="row">
+          <div class="col-xs-auto">
+            <a href="#"><i class="fa fa-angle-left fa-3x px-4"></i></a>
+          </div>
+          <div class="col text-center">
+            <p>Лучшее</p>
+          </div>
+          <div class="col-xs-auto">
+            <a href="#"><i class="fa fa-angle-right fa-3x px-4"></i></a>
+          </div>
+        </div>
+
+        <div id="accordion">
+          <div class="card">
+            <div class="card-header" id="headingOne">
+              <h5 class="mb-0">
+                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  <div class="row">
+                    <div class="col-6 text-left">
+                      Video#1
+                    </div>
+                    <div class="col-6 text-right">
+                      Author#1
+                    </div>
+                  </div>
+                </button>
+              </h5>
+            </div>
+
+            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+              <div class="card-body">
+                <iframe width="100%" height="auto" src="https://www.youtube.com/embed/tgbNymZ7vqY"></iframe>
+                <div class="row">
+                  <div class="col-xs-auto">
+                    <a href="#"><i class="fa fa-angle-up fa-lg px-1"></i></a>
+                  </div>
+                  <div class="col-xs-auto">
+                    <span>1000</span>
+                  </div>
+                  <div class="col-xs-auto">
+                    <a href="#"><i class="fa fa-angle-down fa-lg px-1"></i></a>
+                  </div>
+                  <div class="col text-right">
+                    <span>Comments:</span>
+                  </div>
+                </div>
+                <ul class="list-group">
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Cras justo odio
+                    <span>
+                      <i style="color:chartreuse" class="fa fa-caret-up fa-lg"></i>
+                      <span class="badge badge-primary badge-pill">+22</span>
+                      <i class="fa fa-caret-down fa-lg"></i>
+                    </span>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Dapibus ac facilisis in Laborous vista
+                    <span>
+                      <i class="fa fa-caret-up fa-lg"></i>
+                      <span class="badge badge-primary badge-pill">-10</span>
+                      <i style="color:crimson" class="fa fa-caret-down fa-lg"></i>
+                    </span>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Morbi leo risus
+                    <span>
+                      <i class="fa fa-caret-up fa-lg"></i>
+                      <span class="badge badge-primary badge-pill">0</span>
+                      <i class="fa fa-caret-down fa-lg"></i>
+                    </span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header" id="headingTwo">
+              <h5 class="mb-0">
+                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  <div class="row">
+                    <div class="col-6 text-left">
+                      Video#2
+                    </div>
+                    <div class="col-6 text-right">
+                      Author#2
+                    </div>
+                  </div>
+                </button>
+              </h5>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+              <div class="card-body">
+                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <footer class="footer text-center">
+      <a href="#">
+        Back to top
+      </a>
+    </footer>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="index.js"></script>
+  </body>
+</html>
