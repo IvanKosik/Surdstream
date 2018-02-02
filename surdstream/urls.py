@@ -23,8 +23,11 @@ from django.conf.urls.static import static
 
 
 urlpatterns = [
-    path('accounts/', include('django.contrib.auth.urls')),
-    path('accounts/profile/', views.profile, name='profile'),
+#    path('accounts/', include('django.contrib.auth.urls')),
+#    path('accounts/profile/', views.profile, name='profile'),
+
+    path('accounts/login/', views.login, name='login'),
+    path('accounts/logout/', views.logout, name='logout'),
 
     path('', views.index, name='index'),
     path('translations/', include('translations.urls')),

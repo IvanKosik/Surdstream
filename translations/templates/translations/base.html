@@ -1,4 +1,5 @@
 {% load staticfiles %}
+{% load translation_extras %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -29,8 +30,10 @@
         </ul>
       </div>
 
-      {% if user.is_authenticated %}
-        <!-- AFTER LOGIN -->
+      <!-- AFTER LOGIN -->
+      <div id="menu-logout" {% if not user.is_authenticated %} hidden {% endif %}>
+        <p align="right"><a id="logout-link" href="{% url 'logout' %}">LOGOUT</a></p>
+
         <a class="nav-image ml-2" href="#" title="Добавить слово" data-toggle="modal" data-target="#exampleModalCenter">
           <img class="rounded-circle" src="{% static 'translations/img/plus.png' %}"/>
         </a>
@@ -39,18 +42,18 @@
           <img class="rounded-circle" src="holder.js/50x50"/>
           <span class="oi oi-menu" title="menu" aria-hidden="true"></span>
         </a>
-      {% else %}
-        <!-- BEFORE LOGIN -->
-        <div id="menu_login">
-          <div>
-            <button id="logInButton">Log In</button>
-            <button id="signInButton">Sign In</button>
-          </div>
-          <div>
+      </div>
 
-          </div>
+      <!-- BEFORE LOGIN -->
+      <div id="menu-login" {% if user.is_authenticated %} hidden {% endif %}>
+        <div>
+          <button id="logInButton">Log In</button>
+          <button id="signInButton">Sign In</button>
         </div>
-      {% endif %}
+        <div>
+
+        </div>
+      </div>
     </nav>
 
     <div class="jumbotron jumbotron-fluid search-div">
@@ -67,11 +70,19 @@
           <button id="closeLogInButton" type="button" class="close" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
+          <form id="login-form" method="post" action="{% url 'login' %}">
+            <p id="login-error" hidden>Your username and password didn't match. Please try again.</p>
+            {{ auth_form.username|add_class:"form-control" }}
+            {{ auth_form.password|add_class:"form-control" }}
+            <button type="submit">Submit</button>
+          </form>
+          {% comment %}
           <form>
             <input type="text" placeholder="Email" />
             <input type="password" placeholder="password" />
             <button>Submit</button>
           </form>
+          {% endcomment %}
         </div>
       </div>
       <div class="container-fluid" id="signIn">
@@ -124,5 +135,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
     <script src="{% static 'translations/js/main.js' %}"></script>
     <script src="{% static 'translations/js/modal-add.js' %}"></script>
+    <script src="{% static 'translations/js/ajax-handlers.js' %}"></script>
   </body>
 </html>

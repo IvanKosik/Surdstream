@@ -1,15 +1,44 @@
 from .models import Word, TranslationVideo, UserVote
 
 from django.shortcuts import render, get_object_or_404, redirect
-from django.http import JsonResponse, HttpResponse
+from django.http import JsonResponse, HttpResponse, Http404
 from django.views.decorators.csrf import ensure_csrf_cookie
+from django.contrib.auth import (
+    login as auth_login,
+    logout as auth_logout
+)
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 
 
+@ensure_csrf_cookie
 def index(request):
     word_list = Word.objects.all()
-    context = {'words': word_list, 'new_videos': TranslationVideo.new_videos()}
+
+    auth_form = AuthenticationForm()
+    auth_form.fields['username'].widget.attrs['placeholder'] = "Email"
+    auth_form.fields['password'].widget.attrs['placeholder'] = "Password"
+
+    context = {'words': word_list, 'new_videos': TranslationVideo.new_videos(),
+               'auth_form': auth_form}
     return render(request, 'translations/index.html', context)
+
+
+def login(request):
+    if request.method == 'POST':
+        login_form = AuthenticationForm(request, request.POST)
+        if login_form.is_valid():
+            auth_login(request, login_form.get_user())
+        response_data = {'user_id': request.user.id,
+                         'field_errors': login_form.errors.as_json()}
+        return JsonResponse(response_data)
+    raise Http404("Only accepts AJAX, method POST")
+
+
+def logout(request):
+    if request.method == 'POST':
+        auth_logout(request)
+        return JsonResponse({'user_id': request.user.id})
 
 
 @ensure_csrf_cookie

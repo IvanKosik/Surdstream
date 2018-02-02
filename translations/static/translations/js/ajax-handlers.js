@@ -13,7 +13,6 @@ function getCookie(name) {
     }
     return cookieValue;
 }
-var csrftoken = getCookie('csrftoken');
 function csrfSafeMethod(method) {
     // these HTTP methods do not require CSRF protection
     return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
@@ -21,22 +20,62 @@ function csrfSafeMethod(method) {
 $.ajaxSetup({
     beforeSend: function(xhr, settings) {
         if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
-            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+            // TODO: we can cache csrftoken and update it (get from cookie) only
+            // TODO: when user login or logout
+            xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
         }
     }
 });
 
 
-$(".js-process-vote").click(function() {
+$(document).ready(function() {
+
+});
+
+
+$(".js-process-vote").click(function(event) {
+    event.preventDefault();
+
     var button = $(this);
-    $.post(button.attr("vote-url"), {'vote': button.val()},
-        function(data) {
+    $.post(button.attr("vote-url"), {'vote': button.val()}, function(data) {
             $("#total-votes").text(data.new_total_votes);
             $("#user-vote").text(data.user_vote);
             var voteUpButton = $("#vote-up");
             var voteDownButton = $("#vote-down");
             voteUpButton.prop('disabled', voteUpButton.val() == data.user_vote);
             voteDownButton.prop('disabled', voteDownButton.val() == data.user_vote);
+        },
+        'json'
+    );
+});
+
+
+function updateLoginUi(isLoggedIn) {
+    $("#menu-login").attr("hidden", isLoggedIn);
+    $("#menu-logout").attr("hidden", !isLoggedIn);
+}
+
+
+$("#login-form").submit(function(event) {
+    event.preventDefault(); // avoid to execute the actual submit of the form.
+
+    var loginForm = $(this);
+    $.post(loginForm.attr("action"), loginForm.serialize(), function(data) {
+            updateLoginUi(data.user_id)
+            $("#login-error").attr("hidden", data.user_id);
+//            data.field_errors.__all__[0].message
+        },
+        'json'
+    );
+});
+
+
+$("#logout-link").click(function(event) {
+    event.preventDefault();
+
+    var logoutLink = $(this);
+    $.post(logoutLink.attr("href"), function(data) {
+            updateLoginUi(data.user_id)
         },
         'json'
     );

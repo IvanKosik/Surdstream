@@ -127,7 +127,10 @@ STATIC_URL = '/static/'
 AUTH_USER_MODEL = 'translations.User'
 
 # Redirect to home URL after login (default redirects to /accounts/profile/)
-LOGIN_REDIRECT_URL = '/'
+# LOGIN_REDIRECT_URL = '/'
+# Redirect to this page, if user has to login to see another page
+# LOGIN_URL = '/'
+# LOGOUT_REDIRECT_URL = '/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'files', 'media')
 MEDIA_URL = '/media/'
