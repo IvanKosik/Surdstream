@@ -4,6 +4,9 @@
 /Temp
 /translations/static/translations/Videos
 
+# dotenv
+.env
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -84,9 +87,6 @@ celerybeat-schedule
 
 # SageMath parsed files
 *.sage.py
-
-# dotenv
-.env
 
 # virtualenv
 .venv
