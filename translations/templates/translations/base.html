@@ -72,8 +72,8 @@
           </button>
           <form id="login-form" method="post" action="{% url 'login' %}">
             <p id="login-error" hidden>Your username and password didn't match. Please try again.</p>
-            {{ auth_form.username|add_class:"form-control" }}
-            {{ auth_form.password|add_class:"form-control" }}
+            {{ login_form.username|add_class:"form-control" }}
+            {{ login_form.password|add_class:"form-control" }}
             <button type="submit">Submit</button>
           </form>
           {% comment %}
@@ -90,12 +90,22 @@
           <button id="closeSignInButton" type="button" class="close" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
+          <form id="signup-form" method="post" action="{% url 'signup' %}">
+            <p id="signup-error" hidden>Error</p>
+            {{ signup_form.username|add_class:"form-control" }}
+            {{ signup_form.email|add_class:"form-control" }}
+            {{ signup_form.password1|add_class:"form-control" }}
+            {{ signup_form.password2|add_class:"form-control" }}
+            <button type="submit">Submit</button>
+          </form>
+          {% comment %}
           <form>
             <input type="text" placeholder="Email" />
             <input type="password" placeholder="Password" />
             <input type="password" placeholder="Confirm" />
             <button>Submit</button>
           </form>
+          {% endcomment %}
         </div>
       </div>
     </div>

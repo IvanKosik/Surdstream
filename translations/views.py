@@ -1,27 +1,85 @@
-from .models import Word, TranslationVideo, UserVote
+from .models import Word, TranslationVideo, UserVote, User
+from .forms import SignUpForm
+from .tokens import account_activation_token
 
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import JsonResponse, HttpResponse, Http404
 from django.views.decorators.csrf import ensure_csrf_cookie
 from django.contrib.auth import (
     login as auth_login,
-    logout as auth_logout
+    logout as auth_logout,
+    authenticate as auth
 )
+from django.contrib.sites.shortcuts import get_current_site
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
+from django.template.loader import render_to_string
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.utils.encoding import force_bytes, force_text
 
 
 @ensure_csrf_cookie
 def index(request):
     word_list = Word.objects.all()
 
-    auth_form = AuthenticationForm()
-    auth_form.fields['username'].widget.attrs['placeholder'] = "Email"
-    auth_form.fields['password'].widget.attrs['placeholder'] = "Password"
+    login_form = AuthenticationForm(auto_id='login_id_%s')
+    login_form.fields['username'].widget.attrs['placeholder'] = "Username"
+    login_form.fields['password'].widget.attrs['placeholder'] = "Password"
+
+    signup_form = SignUpForm(auto_id='signup_id_%s')
+    signup_form.fields['username'].widget.attrs['placeholder'] = "Username"
+    signup_form.fields['email'].widget.attrs['placeholder'] = "Email"
+    signup_form.fields['password1'].widget.attrs['placeholder'] = "Password"
+    signup_form.fields['password2'].widget.attrs['placeholder'] = "Confirm"
 
     context = {'words': word_list, 'new_videos': TranslationVideo.new_videos(),
-               'auth_form': auth_form}
+               'login_form': login_form, 'signup_form': signup_form}
     return render(request, 'translations/index.html', context)
+
+
+def signup(request):
+    if request.method == 'POST':
+        signup_form = SignUpForm(request.POST)
+        if signup_form.is_valid():
+            user = signup_form.save(commit=False)
+            user.is_active = False
+            user.save()
+            current_site = get_current_site(request)
+            subject = 'Activate Your SurdStream Account'
+            message = render_to_string('accounts/activation_email.html', {
+                'user': user,
+                'domain': current_site.domain,
+                'uid': urlsafe_base64_encode(force_bytes(user.pk)).decode(),
+                'token': account_activation_token.make_token(user),
+            })
+            user.email_user(subject, message)
+        return JsonResponse({'user_id': request.user.id,
+                             'field_errors': signup_form.errors.as_json()})
+    raise Http404("Only accepts AJAX, method POST")
+
+    #         signup_form.save()
+    #         username = signup_form.cleaned_data.get('username')
+    #         raw_password = signup_form.cleaned_data.get('password1')
+    #         user = auth(username=username, password=raw_password)
+    #         auth_login(request, user)
+    #     return JsonResponse({'user_id': request.user.id,
+    #                          'field_errors': signup_form.errors.as_json()})
+    # raise Http404("Only accepts AJAX, method POST")
+
+
+def activate(request, uidb64, token):
+    try:
+        uid = force_text(urlsafe_base64_decode(uidb64))
+        user = User.objects.get(pk=uid)
+    except (TypeError, ValueError, OverflowError, User.DoesNotExist):
+        user = None
+
+    if user is not None and account_activation_token.check_token(user, token):
+        user.is_active = True
+        user.email_confirmed = True
+        user.save()
+        auth_login(request, user)
+    return JsonResponse({'user_id': request.user.id})
 
 
 def login(request):

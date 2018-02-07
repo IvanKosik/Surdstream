@@ -56,8 +56,32 @@ function updateLoginUi(isLoggedIn) {
 }
 
 
-$("#login-form").submit(function(event) {
+$("#signup-form").submit(function(event) {
     event.preventDefault(); // avoid to execute the actual submit of the form.
+
+    var signupForm = $(this);
+    $.post(signupForm.attr("action"), signupForm.serialize(), function(data) {
+            errors = "";
+            let fields_errors = JSON.parse(data.field_errors);
+            for (let field_name in fields_errors) {
+                for (let field_error of fields_errors[field_name]) {
+                    errors += '\n' + field_error.message;
+                }
+            }
+            if (errors) {
+                $("#signup-error").text(errors);
+                $("#signup-error").attr("hidden", false);
+            } else {
+                updateLoginUi(data.user_id)
+            }
+        },
+        'json'
+    );
+});
+
+
+$("#login-form").submit(function(event) {
+    event.preventDefault();
 
     var loginForm = $(this);
     $.post(loginForm.attr("action"), loginForm.serialize(), function(data) {

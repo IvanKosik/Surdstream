@@ -17,7 +17,7 @@ Including another URLconf
 from translations import views
 
 from django.contrib import admin
-from django.urls import include, path
+from django.urls import include, path, re_path
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -25,6 +25,11 @@ from django.conf.urls.static import static
 urlpatterns = [
 #    path('accounts/', include('django.contrib.auth.urls')),
 #    path('accounts/profile/', views.profile, name='profile'),
+
+    path('accounts/signup/', views.signup, name='signup'),
+    re_path(r'^accounts/activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
+            views.activate, name='activate'),
+#    path('accounts/activate/<str:uidb64>/<str:token>/', views.activate, name='activate'),
 
     path('accounts/login/', views.login, name='login'),
     path('accounts/logout/', views.logout, name='logout'),

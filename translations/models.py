@@ -3,6 +3,7 @@ from django.contrib.auth.models import AbstractUser
 
 
 class User(AbstractUser):
+    email_confirmed = models.BooleanField(default=False)
     # def video_vote_value(self, video_id: int):
     pass
 #    rated_videos = models.ManyToManyField('TranslationVideo', related_name='voted_users', through='UserVote')
