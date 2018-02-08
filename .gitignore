@@ -3,6 +3,7 @@
 /files
 /Temp
 /translations/static/translations/Videos
+/staticfiles
 
 # dotenv
 .env
