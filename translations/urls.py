@@ -13,4 +13,7 @@ urlpatterns = [
     path('<int:word_id>/', views.detail, name='detail'),
     # ex: /translations/9/vote/
     path('<int:video_id>/vote/', views.vote, name='vote'),
+
+    #remove_this
+    path('remove_this/', views.remove_this, name='remove_this'),
 ]

@@ -18,6 +18,10 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_text
 
 
+def remove_this(request):
+
+    return render(request, 'translations/new-base.html')
+
 @ensure_csrf_cookie
 def index(request):
     word_list = Word.objects.all()
