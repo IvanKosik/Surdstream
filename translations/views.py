@@ -44,14 +44,7 @@ def index(request):
     word_list = Word.objects.all()
 
     login_form = AuthenticationForm(auto_id='login_id_%s')
-    login_form.fields['username'].widget.attrs['placeholder'] = "Username"
-    login_form.fields['password'].widget.attrs['placeholder'] = "Password"
-
     signup_form = SignUpForm(auto_id='signup_id_%s')
-    signup_form.fields['username'].widget.attrs['placeholder'] = "Username"
-    signup_form.fields['email'].widget.attrs['placeholder'] = "Email"
-    signup_form.fields['password1'].widget.attrs['placeholder'] = "Password"
-    signup_form.fields['password2'].widget.attrs['placeholder'] = "Confirm"
 
     context = {'words': word_list, 'new_videos': TranslationVideo.new_videos(),
                'login_form': login_form, 'signup_form': signup_form}

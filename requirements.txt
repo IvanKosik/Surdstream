@@ -1,6 +1,7 @@
 certifi==2017.11.5
 dj-database-url==0.4.2
 Django==2.0.1
+django-widget-tweaks==1.4.1
 gunicorn==19.7.1
 psycopg2==2.7.3.2
 python-decouple==3.1

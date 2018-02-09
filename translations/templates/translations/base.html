@@ -1,5 +1,5 @@
 {% load staticfiles %}
-{% load translation_extras %}
+{% load widget_tweaks %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -71,8 +71,8 @@
           </button>
           <form id="login-form" method="post" action="{% url 'login' %}">
             <p id="login-error" hidden>Your username and password didn't match. Please try again.</p>
-            {{ login_form.username|add_class:"form-control" }}
-            {{ login_form.password|add_class:"form-control" }}
+            {{ login_form.username|add_class:"form-control"|attr:"placeholder:Username" }}
+            {{ login_form.password|add_class:"form-control"|attr:"placeholder:Password" }}
             <button type="submit">Submit</button>
           </form>
           {% comment %}
@@ -91,10 +91,10 @@
           </button>
           <form id="signup-form" method="post" action="{% url 'signup' %}">
             <p id="signup-error" hidden>Error</p>
-            {{ signup_form.username|add_class:"form-control" }}
-            {{ signup_form.email|add_class:"form-control" }}
-            {{ signup_form.password1|add_class:"form-control" }}
-            {{ signup_form.password2|add_class:"form-control" }}
+            {{ signup_form.username|add_class:"form-control"|attr:"placeholder:Username" }}
+            {{ signup_form.email|add_class:"form-control"|attr:"placeholder:Email" }}
+            {{ signup_form.password1|add_class:"form-control"|attr:"placeholder:Password" }}
+            {{ signup_form.password2|add_class:"form-control"|attr:"placeholder:Confirm" }}
             <button type="submit">Submit</button>
           </form>
           {% comment %}
