@@ -1,3 +1,5 @@
+{% load translation_extras %}
+
 <!-- SIGN UP -->
 <div class="modal fade" id="signIn" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
@@ -9,34 +11,27 @@
         </button>
       </div>
       <div class="modal-body">
-        <form>
+
+        <form id="signup-form" method="post" action="{% url 'signup' %}">
+          <p id="signup-error" hidden>Error</p>
           <div class="form-group">
-            <label for="exampleInputEmail1">Имя</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Введите имя">
-          </div>
-          <div class="form-group">
-            <label for="exampleInputEmail1">Фамилия</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Введите фамилию">
+            <label for="username">Username</label>
+            {{ signup_form.username|add_class:"form-control" }}
           </div>
           <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+            <label for="email">Email</label>
+          {{ signup_form.email|add_class:"form-control" }}
           </div>
           <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Repeat Password">
+            <label for="password1">Password</label>
+            {{ signup_form.password1|add_class:"form-control" }}
+            {{ signup_form.password2|add_class:"form-control" }}
           </div>
-          <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label" for="exampleCheck1">Запомнить меня</label>
-          </div>
-          <!--<button type="submit" class="btn btn-primary">Submit</button>-->
         </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Отменить</button>
-        <button type="button" class="btn btn-primary">Отправить</button>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Отменить</button>
+          <button type="button" class="btn btn-primary">Отправить</button>
+        </div>
       </div>
     </div>
   </div>

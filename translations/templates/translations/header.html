@@ -9,14 +9,29 @@
       <a class="nav-item nav-link" href="#wordlist">Все слова</a>
       <a class="nav-item nav-link" href="#questions">Вопросы</a>
       <a class="nav-item nav-link" href="#profile">Профиль</a>
-      <div class="row mx-0">
+
+      <div id="menu-logout" class="row mx-0">
+        <a id="logout-link" class="nav-item nav-link" href="{% url 'logout' %}" {% if not user.is_authenticated %} hidden {% endif %}>Выйти</a>
+        {% comment %}
+        <a class="nav-image ml-2" href="#" title="Добавить слово" data-toggle="modal" data-target="#exampleModalCenter">
+          <img class="rounded-circle" src="holder.js/50x50"/>
+        </a>
+
+        <a class="nav-image ml-2" href="#">
+          <img class="rounded-circle" src="holder.js/50x50"/>
+          <span class="oi oi-menu" title="menu" aria-hidden="true"></span>
+        </a>
+        {% endcomment %}
+      </div>
+
+      <div id="menu-login" class="row mx-0" {% if user.is_authenticated %} hidden {% endif %}>
         <div class="col-6 pr-1 pl-0">
-          <button type="button" style="width:100%;" class="btn btn-success" data-toggle="modal" data-target="#exampleModalCenter">
+          <button id="logInButton" type="button" style="width:100%;" class="btn btn-success" data-toggle="modal" data-target="#exampleModalCenter">
             Вход
           </button>
         </div>
         <div class="col-6 pl-1 pr-0">
-          <button type="button" style="width:100%;" class="btn btn-secondary" data-toggle="modal" data-target="#signIn">
+          <button id="signInButton" type="button" style="width:100%;" class="btn btn-secondary" data-toggle="modal" data-target="#signIn">
             Регистрация
           </button>
         </div>
