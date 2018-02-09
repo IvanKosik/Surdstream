@@ -8,6 +8,38 @@ body {
   margin-bottom: 60px;
 }
 
+/* TOOLTIP */
+
+.tooltip .tooltip-inner{
+  background-color: green;
+  height:34px;
+  font-size:18px;
+}
+
+.tooltip .arrow::before {
+  border-left-color: green;
+}
+
+.tooltip .tooltip-inner.green{
+  background-color: green;
+  height:34px;
+  font-size:18px;
+}
+
+.tooltip .arrow.green::before {
+  border-left-color: green;
+}
+
+.tooltip .tooltip-inner.red{
+  background-color: red;
+  height:34px;
+  font-size:18px;
+}
+
+.tooltip .arrow.red::before {
+  border-left-color: red;
+}
+
 #search {
   padding: 10px 0;
 }

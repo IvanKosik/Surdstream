@@ -44,7 +44,15 @@
 
     </main>
 
-    {% include "translations/slider.html" %}
+    <section class="container d-none" id="addVideo">
+      {% include "translations/add-video.html" %}
+    </section>
+
+    {% comment %}
+      SLIDER
+      {% include "translations/slider.html" %}
+    {% endcomment %}
+
     {% include "translations/footer.html" %}
 
     <!-- Optional JavaScript -->
