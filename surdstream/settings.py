@@ -155,24 +155,26 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # DEFAULT_FROM_EMAIL = 'brainsnitch@gmail.com'
 
 
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'file': {
-            'level': 'DEBUG',
-            'class': 'logging.FileHandler',
-            'filename': os.path.join(BASE_DIR, 'debug.log'),
+LOG_TO_FILE = config('LOG_TO_FILE', default=False, cast=bool)
+if LOG_TO_FILE:
+    LOGGING = {
+        'version': 1,
+        'disable_existing_loggers': False,
+        'handlers': {
+            'file': {
+                'level': 'DEBUG',
+                'class': 'logging.FileHandler',
+                'filename': os.path.join(BASE_DIR, 'debug.log'),
+            },
         },
-    },
-    'loggers': {
-        'django': {
-            'handlers': ['file'],
-            'level': 'DEBUG',
-            'propagate': True,
+        'loggers': {
+            'django': {
+                'handlers': ['file'],
+                'level': 'DEBUG',
+                'propagate': True,
+            },
         },
-    },
-}
+    }
 
 
 # Static files (CSS, JavaScript, Images)
