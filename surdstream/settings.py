@@ -143,8 +143,8 @@ AUTH_USER_MODEL = 'translations.User'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'files', 'media')
 MEDIA_URL = '/media/'
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-#%EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 #EMAIL_HOST = 'smtp.gmail.com'  # 'localhost'
 #EMAIL_USE_SSL = True
 #EMAIL_PORT = 465
@@ -154,6 +154,12 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # EMAIL_USE_TLS = True
 # DEFAULT_FROM_EMAIL = 'brainsnitch@gmail.com'
 
+EMAIL_PORT = 587
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = config('EMAIL_HOST_USER', default='')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', default='')
+#%DEFAULT_FROM_EMAIL = 'postmaster@surdstream.herokuapp.com'
+EMAIL_USE_TLS = True
 
 LOG_TO_FILE = config('LOG_TO_FILE', default=False, cast=bool)
 if LOG_TO_FILE:
