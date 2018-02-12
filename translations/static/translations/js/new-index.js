@@ -13,6 +13,8 @@ $(function() {
       */
     })
 
+    $('.carousel').carousel({'interval':false});
+
     $('.navbar-nav a').click(function(e){
       e.preventDefault();
       if ( $(this).hasClass('active') ) {

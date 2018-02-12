@@ -92,7 +92,9 @@ $("#login-form").submit(function(event) {
 //            data.field_errors.__all__[0].message
         },
         'json'
-    );
+    ).done(function() {
+      $('#myModal').modal('toggle');
+    });
 });
 
 

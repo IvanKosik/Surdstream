@@ -2,107 +2,42 @@
 
   <!-- SEARCH -->
   <div id="search" class="container">
-    <div class="input-group input-group-lg">
-      <div class="input-group-prepend">
-        <span class="input-group-text" id="inputGroup-sizing-lg">Поиск</span>
-      </div>
-      <input type="text" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm" placeholder="Введите слово">
-    </div>
-  </div>
-  <!-- MAIN PAGE -->
-  <div class="row">
-    <div class="col-xs-auto">
-      <a href="#"><i class="fas fa-angle-left fa-3x mx-3"></i></a>
-    </div>
-    <div class="col text-center">
-      <p>Лучшее</p>
-    </div>
-    <div class="col-xs-auto">
-      <a href="#"><i class="fas fa-angle-right fa-3x mx-3"></i></a>
-    </div>
-  </div>
-
-  <div id="accordion">
-    <div class="card">
-      <div class="card-header" id="headingOne">
-        <h5 class="mb-0">
-          <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-            <div class="row">
-              <div class="col-6 text-left">
-                Video#1
-              </div>
-              <div class="col-6 text-right">
-                Author#1
-              </div>
-            </div>
-          </button>
-        </h5>
-      </div>
-
-      <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-        <div class="card-body">
-          <iframe width="100%" height="auto" src="https://www.youtube.com/embed/tgbNymZ7vqY"></iframe>
-          <div class="row">
-            <div class="col-xs-auto">
-              <a href="#"><i class="fas fa-angle-up fa-lg mx-1"></i></a>
-            </div>
-            <div class="col-xs-auto">
-              <span>1000</span>
-            </div>
-            <div class="col-xs-auto">
-              <a href="#"><i class="fas fa-angle-down fa-lg mx-1"></i></a>
-            </div>
-            <div class="col text-right">
-              <span>Comments:</span>
-            </div>
-          </div>
-          <ul class="list-group">
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-              Cras justo odio
-              <span>
-                <i style="color:chartreuse" class="fas fa-caret-up fa-lg"></i>
-                <span class="badge badge-primary badge-pill">+22</span>
-                <i class="fas fa-caret-down fa-lg"></i>
-              </span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-              Dapibus ac facilisis in Laborous vista
-              <span>
-                <i class="fas fa-caret-up fa-lg"></i>
-                <span class="badge badge-primary badge-pill">-10</span>
-                <i style="color:crimson" class="fa fa-caret-down fa-lg"></i>
-              </span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-              Morbi leo risus
-              <span>
-                <i class="fas fa-caret-up fa-lg"></i>
-                <span class="badge badge-primary badge-pill">0</span>
-                <i class="fas fa-caret-down fa-lg"></i>
-              </span>
-            </li>
-          </ul>
+    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+      <div class="container">
+        <div class="row">
+          <a style="position:relative; background-color:red;" class="col-3" href="#carouselExampleControls" role="button" data-slide="prev">
+            <i class="fas fa-angle-left fa-2x"></i>
+            <span class="px-2">Previous</span>
+          </a>
+          <p class="col-6 text-center">
+            Лучшее
+          </p>
+          <a style="position:relative; background-color:red;" class="col-3 text-right" href="#carouselExampleControls" role="button" data-slide="next">
+            <span class="px-2">Next</span>
+            <i class="fas fa-angle-right fa-2x"></i>
+          </a>
         </div>
       </div>
-    </div>
-    <div class="card">
-      <div class="card-header" id="headingTwo">
-        <h5 class="mb-0">
-          <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          {% comment %}
+            <img class="d-block w-100" src="holder.js/1920x300?text=First slide&random=yes">
+          {% endcomment %}
+
+          <div class="container">
             <div class="row">
-              <div class="col-6 text-left">
-                Video#2
-              </div>
-              <div class="col-6 text-right">
-                Author#2
-              </div>
+              {% include "translations/video-link.html" %}
+              {% include "translations/video-link.html" %}
             </div>
-          </button>
-        </h5>
-      </div>
-      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-        <div class="card-body">
-          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+          </div>
+
+        </div>
+        <div class="carousel-item">
+          <img class="d-block w-100" src="holder.js/1920x300?text=Second slide&random=yes">
+        </div>
+        <div class="carousel-item">
+          <img class="d-block w-100" src="holder.js/1920x300?text=Third slide&random=yes">
         </div>
       </div>
     </div>
