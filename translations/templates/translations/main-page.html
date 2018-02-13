@@ -5,16 +5,22 @@
     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
       <div class="container">
         <div class="row">
-          <a style="position:relative; background-color:red;" class="col-3" href="#carouselExampleControls" role="button" data-slide="prev">
-            <i class="fas fa-angle-left fa-2x"></i>
+          <a class="col-2 col-sm-4 arrow" href="#carouselExampleControls" role="button" data-slide="prev">
+            {% comment %}
+              <i data-fa-transform="down-0" class="fas fa-angle-left fa-2x"></i>
+            {% endcomment %}
+            <i data-fa-transform="down-2" class="fas fa-angle-left fa-2x"></i>
             <span class="px-2">Previous</span>
           </a>
-          <p class="col-6 text-center">
+          <p class="col-8 col-sm-4 text-center">
             Лучшее
           </p>
-          <a style="position:relative; background-color:red;" class="col-3 text-right" href="#carouselExampleControls" role="button" data-slide="next">
+          <a class="col-2 col-sm-4 arrow text-right" href="#carouselExampleControls" role="button" data-slide="next">
             <span class="px-2">Next</span>
-            <i class="fas fa-angle-right fa-2x"></i>
+            {% comment %}
+              <i data-fa-transform="down-0" class="fas fa-angle-right fa-2x"></i>
+            {% endcomment %}
+            <i data-fa-transform="down-2" class="fas fa-angle-right fa-2x"></i>
           </a>
         </div>
       </div>
