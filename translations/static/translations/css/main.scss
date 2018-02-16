@@ -1,0 +1,51 @@
+$basic-orange: #ffa500;
+$dark-orange: #ee7600;
+
+$small-font: 1rem;
+
+.arrow {
+  color: $basic-orange;
+  padding: 0;
+  //line-height: 40px;
+
+  &:hover {
+    color: $dark-orange;
+    text-decoration: none;
+  }
+
+  + p {
+    font-size: 1.5rem;
+    line-height: 40px;
+    margin: 0;
+  }
+
+  span {
+    font-size: 1.25rem;
+  }
+
+  @media screen and  (max-width: 576px) {
+    span {
+      display: none;
+    }
+
+    + p {
+      font-size: $small-font;
+    }
+  }
+}
+
+.video-block {
+
+  &:nth-child(2n) {
+    border-right: 1px solid $basic-orange;
+  }
+
+  @media screen and (max-width: 992px) {
+    border: 1px solid $basic-orange;
+    border-bottom: 0;
+
+    &:last-child {
+      border-bottom: 1px solid $basic-orange;
+    }
+  }
+}

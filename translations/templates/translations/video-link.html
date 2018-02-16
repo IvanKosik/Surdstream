@@ -1,16 +1,7 @@
-<div class="container col-md-6 col-12">
-    <div class="row border border-warning border-right-0 pt-2 px-2">
-      <div class="col-8 px-0" style="height:200px;">
-        <a href="#testiModal" data-toggle="modal" class="d-block">
-          <iframe width="100%" class="" style="height:200px;"
-          {% comment %}
-            style="pointer-events:none"
-          {% endcomment %}
-          src="https://www.youtube.com/embed/0sB3Fjw3Uvc">
-          </iframe>
-        </a>
-      </div>
-      <div class="col-4 d-flex align-items-start flex-column pr-0">
+<div class="container col-lg-6 col-12 video-block">
+    <div class="row p-2">
+
+      <div class="d-block d-sm-none">
         <a href="#" class="m-0">Video name</a>
         <span class=""><a href="#" class=""><u>Author</u></a>&nbsp;<small>2 hours ago</small></span>
         <span class="">
@@ -20,6 +11,20 @@
           <span class="badge badge-pill badge-dark">Tag 4</span>
           <span class="badge badge-pill badge-dark">Tag 5</span>
         </span>
+      </div>
+
+      <div class="col-12 col-sm-8 col-lg-7 col-xl-8 px-0" style="height:200px;">
+        <a href="#testiModal" data-toggle="modal" class="d-block">
+          <iframe width="100%" class="" style="height:200px;"
+          {% comment %}
+            style="pointer-events:none"
+          {% endcomment %}
+          src="https://www.youtube.com/embed/0sB3Fjw3Uvc">
+          </iframe>
+        </a>
+      </div>
+
+      <div class="d-block d-sm-none w-100">
         <span class="mt-auto mb-2 w-100">
           {% comment %}
             <i class="far fa-heart fa-lg"></i>
@@ -38,5 +43,37 @@
           </span>
         </span>
       </div>
+
+      <div class="col-sm-4 col-lg-5 col-xl-4 d-none d-sm-block pr-0">
+        <div class="d-flex align-items-start flex-column h-100">
+          <a href="#" class="m-0">Video name</a>
+          <span class=""><a href="#" class=""><u>Author</u></a>&nbsp;<small>2 hours ago</small></span>
+          <span class="">
+            <span class="badge badge-pill badge-warning">Minsk</span>
+            <span class="badge badge-pill badge-dark">Tag 2</span>
+            <span class="badge badge-pill badge-dark">Tag 3</span>
+            <span class="badge badge-pill badge-dark">Tag 4</span>
+            <span class="badge badge-pill badge-dark">Tag 5</span>
+          </span>
+          <span class="mt-auto mb-2 w-100">
+            {% comment %}
+              <i class="far fa-heart fa-lg"></i>
+            {% endcomment %}
+            <i class="far fa-thumbs-up fa-lg" data-fa-transform="up-1"></i>
+            <span class="badge badge-pill badge-light">1232</span>
+            <i class="far fa-thumbs-down fa-lg" data-fa-transform="down-3"></i>
+            {% comment %}
+                <span class="badge badge-secondary badge-pill">1200</span>
+            {% endcomment %}
+
+            <span class="badge badge-secondary" style="float:right">
+              <i class="far fa-comment-alt fa-lg"></i>
+              <span class="badge badge-light" style="transform:translateY(-1.5px)">234</span>
+              <span class="sr-only">unread messages</span>
+            </span>
+          </span>
+        </div>
+      </div>
+
     </div>
 </div>

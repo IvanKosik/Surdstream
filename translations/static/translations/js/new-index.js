@@ -1,5 +1,7 @@
 $(function() {
 
+    $('.carousel').carousel({'interval':false,'ride':false,'wrap':false});
+
     $(function () {
 
       $('[data-toggle="tooltip"]').tooltip()
@@ -12,8 +14,6 @@ $(function() {
          </div>'})
       */
     })
-
-    $('.carousel').carousel({'interval':false});
 
     $('.navbar-nav a').click(function(e){
       e.preventDefault();
