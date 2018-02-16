@@ -39,6 +39,10 @@ def remove_this(request):
     return render(request, 'translations/new-base.html', context)
 
 
+def upload_video(request):
+    TranslationVideo.upload_video()
+
+
 @ensure_csrf_cookie
 def index(request):
     word_list = Word.objects.all()

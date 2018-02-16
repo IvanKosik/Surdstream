@@ -182,6 +182,18 @@ if LOG_TO_FILE:
         },
     }
 
+# This OAuth 2.0 access scope allows an application to upload files to the
+# authenticated user's YouTube channel, but doesn't allow other types of access.
+YOUTUBE_UPLOAD_SCOPE = 'https://www.googleapis.com/auth/youtube.upload'
+YOUTUBE_AUTH_CLIENT_ID = config('YOUTUBE_AUTH_CLIENT_ID')
+YOUTUBE_AUTH_CLIENT_SECRET = config('YOUTUBE_AUTH_CLIENT_SECRET')
+GOOGLE_AUTH_URI = 'https://accounts.google.com/o/oauth2/v2/auth'
+GOOGLE_TOKEN_URI = 'https://www.googleapis.com/oauth2/v4/token'
+# Need to add the redirect URI in the developer console
+YOUTUBE_AUTH_WEB_REDIRECT_URI = 'http://www.surd.stream/youtube_auth_completed'
+# Got refresh token using https://developers.google.com/oauthplayground
+# (in settings setup client id and secret)
+YOUTUBE_AUTH_REFRESH_TOKEN = config('YOUTUBE_AUTH_REFRESH_TOKEN')
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/'files',

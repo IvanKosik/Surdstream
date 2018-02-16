@@ -16,4 +16,5 @@ urlpatterns = [
 
     #remove_this
     path('remove_this/', views.remove_this, name='remove_this'),
+    path('upload_video/', views.upload_video, name='upload_video'),
 ]

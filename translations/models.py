@@ -1,3 +1,5 @@
+from .video_uploader import upload_video
+
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
@@ -45,6 +47,10 @@ class TranslationVideo(models.Model):
         assert len(user_vote_records) <= 1, \
             'There can be only one record of UserVote for the specific user and the video'
         return user_vote_records[0].vote if user_vote_records else 0
+
+    @staticmethod
+    def upload_video():
+        upload_video()
 
 
 class DeletedTranslationVideo(models.Model):
