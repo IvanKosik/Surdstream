@@ -1,6 +1,12 @@
 from django.conf import settings
+import logging
 
 import requests
+
+from typing import Tuple
+
+
+logger = logging.getLogger(__name__)
 
 
 def print_request(req):
@@ -102,29 +108,24 @@ def upload_video_metadata(access_token: str, file_size: int) -> str:
 
 
 # Upload video to the |upload_url}
-def upload_video_to_url(upload_url: str, access_token: str, file_size: int, file_data) -> requests.Response:
+def upload_video_to_url(upload_url: str, access_token: str, file_data) -> requests.Response:
     headers = {'Authorization': 'Bearer ' + access_token,
                'Content-type': 'video/*',
-               'Content-Length': str(file_size)}
+               'Content-Length': str(file_data.size)}
     return requests.put(upload_url, headers=headers, data=file_data)
 
 
-# Returns video id string
-def upload_video() -> str:
+# Returns (status, video id string)
+def upload_video_to_youtube(file) -> Tuple[int, str]:
     current_access_token = refresh_access_token(settings.YOUTUBE_AUTH_REFRESH_TOKEN)
-    print("access_token:  ", current_access_token)
+    logger.debug("Youtube access token: ", current_access_token)
 
-    file_name = 'Video3.mp4'
-    #    if not os.path.exists(file_name):
-    #        print("NO SUCH FILE")
-    upload_data_file = open(file_name, 'rb').read()
-    file_size = len(upload_data_file)
+    location_url = upload_video_metadata(current_access_token, file.size)
+    logger.debug("Youtube file location URL: ", location_url)
 
-    location_url = upload_video_metadata(current_access_token, file_size)
-    print("---LOCATION: ", location_url)
-    resp = upload_video_to_url(location_url, current_access_token, file_size, upload_data_file)
-    print("UPLOAD RESULT: ", resp.status_code)
-    print(print_response(resp))
-    video_id = resp.json()['id']
-    print("Video ID: ", video_id)
-    return video_id
+    response = upload_video_to_url(location_url, current_access_token, file)
+    logger.debug("Youtube upload status code: ", response.status_code)
+
+    video_id = response.json()['id']
+    logger.debug("Youtube uploaded video id: ", video_id)
+    return response.status_code, video_id

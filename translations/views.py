@@ -114,13 +114,19 @@ def logout(request):
 
 
 def upload_video(request):
-    # TranslationVideo.upload_video()
     if request.method == 'POST':
         print("UPLOAD VIDEO, post: ", request.POST)
-        print("files: ", request.FILES['file-input'])
-        # words = [w.strip() for w in request.POST['words'].split(',') if w.strip()]
-        # file = request.FILES['file']
-        # if file.size < 5242880 and words:  # 5 MB
+        print("files: ", request.FILES)
+        words = [w.strip() for w in request.POST['tags'].split(',') if w.strip()]
+        file = request.FILES['file']
+        if file.size < 5242880 and words:  # 5 MB
+            print("before upload")
+            status_code, video_id = TranslationVideo.upload_video(file)
+
+            # video_record = TranslationVideo(author=request.user, )
+
+            return JsonResponse({'status_code': status_code,
+                                 'video_id': video_id})
         #     video_record = TranslationVideo(author=request.user, video_file=file)
         #     video_record.save()
         #     for word_text in words:

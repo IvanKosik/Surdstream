@@ -1,16 +1,18 @@
-$("#uploadCustomFile").change(function() {
-    var fileInput = $(this);
-    var selectedFiles = fileInput.prop('files');
-    var validFile = true;
+var selectedVideoFile = null;
+var selectedValidFile = false;
+
+$("#upload-custom-file").change(function() {
+    selectedVideoFile = null;
+    selectedValidFile = false;
+    let fileInput = $(this);
+    let selectedFiles = fileInput.prop('files');
     if (selectedFiles.length === 1) {
-        var selectedFile = selectedFiles[0];
-        if (selectedFile.size > 5242880 || !validFileType(selectedFile)) { // 5 MB
-            validFile = false;
+        selectedVideoFile = selectedFiles[0];
+        if (selectedVideoFile.size < 5242880 && validFileType(selectedVideoFile)) { // 5 MB
+            selectedValidFile = true;
         }
-    } else {
-        validFile = false;
     }
-    $("#uploadVideo").prop('disabled', !validFile);
+    $("#upload-video").prop('disabled', !selectedValidFile);
 });
 
 
@@ -22,7 +24,7 @@ var validFileTypes = [
 ]
 
 function validFileType(file) {
-    for (var i = 0; i < validFileTypes.length; i++) {
+    for (let i = 0; i < validFileTypes.length; i++) {
         if (file.type === validFileTypes[i]) {
             return true;
         }
@@ -30,15 +32,22 @@ function validFileType(file) {
     return false;
 }
 
-$("#uploadVideoForm").submit(function(event) {
+$("#upload-video-form").submit(function(event) {
     event.preventDefault(); // avoid to execute the actual submit of the form.
 
-    var uploadVideoForm = $(this);
-    console.log("serialized upload form: ", uploadVideoForm.serialize())
-    $.post(uploadVideoForm.attr("action"), uploadVideoForm.serialize(), function(data) {
-            console.log("after upload post");
+    let uploadVideoForm = $(this);
+    let formData = new FormData(this);
+
+    $.ajax({
+        method: "POST",
+        url: uploadVideoForm.attr("action"),
+        data: formData,
+        contentType: false,
+        processData: false,
+        success: function(data) {
+            console.log("UPLOADED status: ", data.status_code, "   video_id: ", data.video_id);
 //            TODO
         },
-        'json'
-    );
+        dataType: 'json'
+    });
 });

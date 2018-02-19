@@ -1,33 +1,30 @@
 <!-- Modal -->
 <div id="add-video">
 
-  <form id="uploadVideoForm" method="post" action="{% url 'translations:upload_video' %}">
-    <div class="form-group">
-      <label for="formGroupExampleInput">Video Name</label>
-      <input type="text" class="form-control w-50" id="formGroupExampleInput" name="words" placeholder="Video Name">
+  <form id="upload-video-form" method="post" action="{% url 'translations:upload_video' %}">
+    <div class="custom-file">
+      <input type="file" class="custom-file-input" id="upload-custom-file" name="file">
+      <label class="custom-file-label" for="upload-custom-file">Choose file</label>
     </div>
+
     <div class="form-group">
-      <label for="formGroupExampleInput2">Additional Tags (through comma)</label>
-      <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Additional Tags">
+      <label for="formGroupExampleInput2">Tags (through comma)</label>
+      <input type="text" class="form-control" id="formGroupExampleInput2" name="tags" placeholder="Tags">
     </div>
 
     <div class="form-group">
       <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+        <input class="form-check-input" type="radio" name="video-type" id="inlineRadio1" value="word" checked>
         <label class="form-check-label" for="inlineRadio1">Word</label>
       </div>
       <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+        <input class="form-check-input" type="radio" name="video-type" id="inlineRadio2" value="description">
         <label class="form-check-label" for="inlineRadio2">Description</label>
       </div>
     </div>
 
-    <div class="custom-file">
-      <input type="file" class="custom-file-input" id="uploadCustomFile" name="file-input">
-      <label class="custom-file-label" for="uploadCustomFile">Choose file</label>
-    </div>
     <div class="text-center mt-3">
-        <button id="uploadVideo" type="submit" class="btn btn-info" disabled>Send Video</button>
+        <button id="upload-video" type="submit" class="btn btn-info" disabled>Send Video</button>
     </div>
   </form>
 
