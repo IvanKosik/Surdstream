@@ -1,10 +1,10 @@
 <!-- Modal -->
 <div id="add-video">
 
-  <form>
+  <form id="uploadVideoForm" method="post" action="{% url 'translations:upload_video' %}">
     <div class="form-group">
       <label for="formGroupExampleInput">Video Name</label>
-      <input type="text" class="form-control w-50" id="formGroupExampleInput" placeholder="Video Name">
+      <input type="text" class="form-control w-50" id="formGroupExampleInput" name="words" placeholder="Video Name">
     </div>
     <div class="form-group">
       <label for="formGroupExampleInput2">Additional Tags (through comma)</label>
@@ -20,17 +20,15 @@
         <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
         <label class="form-check-label" for="inlineRadio2">Description</label>
       </div>
-    <div class="form-group">
+    </div>
 
     <div class="custom-file">
-      <input type="file" class="custom-file-input" id="customFile">
-      <label class="custom-file-label" for="customFile">Choose file</label>
+      <input type="file" class="custom-file-input" id="uploadCustomFile" name="file-input">
+      <label class="custom-file-label" for="uploadCustomFile">Choose file</label>
     </div>
     <div class="text-center mt-3">
-        <button type="submit" class="btn btn-info">Send Video</button>
+        <button id="uploadVideo" type="submit" class="btn btn-info" disabled>Send Video</button>
     </div>
   </form>
-
-
 
 </div>

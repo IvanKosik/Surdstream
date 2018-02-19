@@ -114,7 +114,7 @@ def upload_video() -> str:
     current_access_token = refresh_access_token(settings.YOUTUBE_AUTH_REFRESH_TOKEN)
     print("access_token:  ", current_access_token)
 
-    file_name = 'Video3.webm'
+    file_name = 'Video3.mp4'
     #    if not os.path.exists(file_name):
     #        print("NO SUCH FILE")
     upload_data_file = open(file_name, 'rb').read()

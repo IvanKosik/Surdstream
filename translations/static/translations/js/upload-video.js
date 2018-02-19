@@ -1,4 +1,4 @@
-$("#file-input").change(function() {
+$("#uploadCustomFile").change(function() {
     var fileInput = $(this);
     var selectedFiles = fileInput.prop('files');
     var validFile = true;
@@ -10,7 +10,7 @@ $("#file-input").change(function() {
     } else {
         validFile = false;
     }
-    $("#upload").prop('disabled', !validFile);
+    $("#uploadVideo").prop('disabled', !validFile);
 });
 
 
@@ -29,3 +29,16 @@ function validFileType(file) {
     }
     return false;
 }
+
+$("#uploadVideoForm").submit(function(event) {
+    event.preventDefault(); // avoid to execute the actual submit of the form.
+
+    var uploadVideoForm = $(this);
+    console.log("serialized upload form: ", uploadVideoForm.serialize())
+    $.post(uploadVideoForm.attr("action"), uploadVideoForm.serialize(), function(data) {
+            console.log("after upload post");
+//            TODO
+        },
+        'json'
+    );
+});

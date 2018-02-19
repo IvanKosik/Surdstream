@@ -39,10 +39,6 @@ def remove_this(request):
     return render(request, 'translations/new-base.html', context)
 
 
-def upload_video(request):
-    TranslationVideo.upload_video()
-
-
 @ensure_csrf_cookie
 def index(request):
     word_list = Word.objects.all()
@@ -115,6 +111,25 @@ def logout(request):
     if request.method == 'POST':
         auth_logout(request)
         return JsonResponse({'user_id': request.user.id})
+
+
+def upload_video(request):
+    # TranslationVideo.upload_video()
+    if request.method == 'POST':
+        print("UPLOAD VIDEO, post: ", request.POST)
+        print("files: ", request.FILES['file-input'])
+        # words = [w.strip() for w in request.POST['words'].split(',') if w.strip()]
+        # file = request.FILES['file']
+        # if file.size < 5242880 and words:  # 5 MB
+        #     video_record = TranslationVideo(author=request.user, video_file=file)
+        #     video_record.save()
+        #     for word_text in words:
+        #         word, created = Word.objects.get_or_create(word_text=word_text)
+        #         video_record.words.add(word)
+        #     return redirect(profile)
+        # else:
+        #     return HttpResponse(status=413)
+    raise Http404("Only accepts AJAX, method POST")
 
 
 @ensure_csrf_cookie
