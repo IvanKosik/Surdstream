@@ -1,4 +1,4 @@
-from .models import Word, TranslationVideo, UserVote, User
+from .models import Word, TranslationVideo, UserVote, User, VideoWord
 from .forms import SignUpForm
 from .tokens import account_activation_token
 
@@ -123,18 +123,16 @@ def upload_video(request):
             print("before upload")
             status_code, video_id = TranslationVideo.upload_video(file, words)
 
-            # video_record = TranslationVideo(author=request.user, )
-
+            video_record = TranslationVideo.objects.create(author=request.user, youtube_id=video_id)
+            match = 1
+            for word_text in words:
+                word, created = Word.objects.get_or_create(word_text=word_text)
+                VideoWord.objects.create(video=video_record, word=word, match=match)
+                if match > 0.6:
+                    match -= 0.1
             return JsonResponse({'status_code': status_code,
                                  'video_id': video_id})
-        #     video_record = TranslationVideo(author=request.user, video_file=file)
-        #     video_record.save()
-        #     for word_text in words:
-        #         word, created = Word.objects.get_or_create(word_text=word_text)
-        #         video_record.words.add(word)
-        #     return redirect(profile)
-        # else:
-        #     return HttpResponse(status=413)
+        return JsonResponse({'error': 'incorrect data'})
     raise Http404("Only accepts AJAX, method POST")
 
 

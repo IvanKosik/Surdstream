@@ -26,19 +26,19 @@ class Word(models.Model):
 
 class TranslationVideo(models.Model):
     author = models.ForeignKey(User, models.SET_NULL, blank=True, null=True)
-    words = models.ManyToManyField(Word, related_name='videos')
-#    video_url = models.CharField(max_length=500)
-    video_file = models.FileField(upload_to='videos/%Y/%m/', max_length=150)
+#    words = models.ManyToManyField(Word, related_name='videos')
+    words = models.ManyToManyField(Word, related_name='videos', through='VideoWord')
+#    video_url = models.CharField(max_length=500)  # models.URLField
+#    video_file = models.FileField(upload_to='videos/%Y/%m/', max_length=150)
+    youtube_id = models.CharField(max_length=50, unique=True, blank=True, null=True)
     votes = models.IntegerField(default=0)
     voted_users = models.ManyToManyField(User, related_name='rated_videos', through='UserVote')
     upload_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        words_str = '['
-        for w in self.words.all():
-            words_str += w.word_text + ', '
-        words_str += ']'
-        return 'Video ' + self.video_file.url + ' ' + words_str
+        #words_str = '[' + ', '.join(self.words.all()) + ']'
+        # print("IDDD: ", self.youtube_id)
+        return 'Video ' + 'some_id '# + words_str  # str(self.youtube_id.name) + ' ' + words_str
 
     @staticmethod
     def new_videos():
@@ -53,6 +53,12 @@ class TranslationVideo(models.Model):
     @staticmethod
     def upload_video(file, words: List[str]) -> Tuple[int, str]:
         return upload_video_to_youtube(file, words)
+
+
+class VideoWord(models.Model):
+    video = models.ForeignKey(TranslationVideo, on_delete=models.CASCADE)
+    word = models.ForeignKey(Word, on_delete=models.CASCADE)
+    match = models.FloatField()  # coincidence percent
 
 
 class DeletedTranslationVideo(models.Model):

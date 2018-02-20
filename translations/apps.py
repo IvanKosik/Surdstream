@@ -17,13 +17,13 @@ class TranslationsConfig(AppConfig):
                          dispatch_uid="pre_save_translation_video_uid")
         post_save.connect(post_save_translation_video, sender=TranslationVideo,
                           dispatch_uid="post_save_translation_video_uid")
-        pre_delete.connect(pre_delete_translation_video, sender=TranslationVideo,
-                           dispatch_uid="pre_delete_translation_video_uid")
-        post_delete.connect(post_delete_translation_video, sender=TranslationVideo,
-                            dispatch_uid="post_delete_translation_video_uid")
-
-        post_delete.connect(post_delete_deleted_translation_video, sender=DeletedTranslationVideo,
-                            dispatch_uid="post_delete_deleted_translation_video_uid")
+        # pre_delete.connect(pre_delete_translation_video, sender=TranslationVideo,
+        #                    dispatch_uid="pre_delete_translation_video_uid")
+        # post_delete.connect(post_delete_translation_video, sender=TranslationVideo,
+        #                     dispatch_uid="post_delete_translation_video_uid")
+        #
+        # post_delete.connect(post_delete_deleted_translation_video, sender=DeletedTranslationVideo,
+        #                     dispatch_uid="post_delete_deleted_translation_video_uid")
 
 
 def pre_save_user_vote(sender, instance, **kwargs):  # instance: new_user_vote

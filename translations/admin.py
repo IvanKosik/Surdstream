@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 
-from .models import User, Word, TranslationVideo, DeletedTranslationVideo, UserVote
+from .models import User, Word, TranslationVideo, DeletedTranslationVideo, UserVote, VideoWord
 
 
 class UserVoteInline(admin.TabularInline):
@@ -37,3 +37,4 @@ admin.site.register(Word)
 admin.site.register(TranslationVideo, TranslationVideoAdmin)
 admin.site.register(DeletedTranslationVideo)
 admin.site.register(UserVote)
+admin.site.register(VideoWord)
