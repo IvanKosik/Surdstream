@@ -3,7 +3,7 @@ from .video_uploader import upload_video_to_youtube
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
-from typing import Tuple
+from typing import Tuple, List
 
 
 class User(AbstractUser):
@@ -51,8 +51,8 @@ class TranslationVideo(models.Model):
         return user_vote_records[0].vote if user_vote_records else 0
 
     @staticmethod
-    def upload_video(file) -> Tuple[int, str]:
-        return upload_video_to_youtube(file)
+    def upload_video(file, words: List[str]) -> Tuple[int, str]:
+        return upload_video_to_youtube(file, words)
 
 
 class DeletedTranslationVideo(models.Model):

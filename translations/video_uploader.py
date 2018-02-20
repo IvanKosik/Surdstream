@@ -3,7 +3,7 @@ import logging
 
 import requests
 
-from typing import Tuple
+from typing import Tuple, List
 
 
 logger = logging.getLogger(__name__)
@@ -66,45 +66,31 @@ def refresh_access_token(refresh_token: str) -> str:
 
 # Upload a video metadata
 # Returns a location URI to upload the actual video file
-def upload_video_metadata(access_token: str, file_size: int) -> str:
-    upload_url = "https://www.googleapis.com/upload/youtube/v3/videos"
-    upload_params = {'uploadType': 'resumable',
-                     'part': 'snippet,status,contentDetails'}
-    upload_headers = {'Host': 'www.googleapis.com',
-                      'Authorization': 'Bearer ' + access_token,
-                      'Content-type': 'application/json',  # ; charset=UTF-8',
-                      'X-Upload-Content-Length': str(file_size),
-                      'X-Upload-Content-Type': 'video/*'}
-    upload_data = {
-        "snippet": {
-            "title": "My video title",
-            "description": "This is a description of my video",
-            "tags": ["cool", "video", "more keywords"],
-            "categoryId": "22"
-        },
-        "status": {
-            "privacyStatus": "private",
-            "license": "youtube"
-        }
-    }
+def upload_video_metadata(access_token: str, file_size: int, words: List[str]) -> str:
+    params = {'uploadType': 'resumable',
+              'part': 'snippet,status,contentDetails'}
+    headers = {'Host': 'www.googleapis.com',
+               'Authorization': 'Bearer ' + access_token,
+               'Content-type': 'application/json; charset=UTF-8',
+               'X-Upload-Content-Length': str(file_size),
+               'X-Upload-Content-Type': 'video/*'}
 
-    '''
-    body = dict(
+    words_str = ", ".join(words)
+    data = dict(
         snippet=dict(
-            title="TestSurdVideo",
-            description="My test description",
-            tags=["TestO","Surd"],
-            categoryId="22"
-    ),
+            title=words_str + " in sign language",
+            description="Translation into sign language of the following synonyms: " + words_str,
+            tags=words,
+            categoryId=27
+        ),
         status=dict(
-            privacyStatus="private"
+            privacyStatus="unlisted",
+            embeddable=True
         )
     )
-    '''
 
-    upload_r = requests.post(upload_url, params=upload_params, headers=upload_headers,
-                             json=upload_data)
-    return upload_r.headers['Location']
+    response = requests.post(settings.YOUTUBE_UPLOAD_URI, params=params, headers=headers, json=data)
+    return response.headers['Location']
 
 
 # Upload video to the |upload_url}
@@ -116,11 +102,11 @@ def upload_video_to_url(upload_url: str, access_token: str, file_data) -> reques
 
 
 # Returns (status, video id string)
-def upload_video_to_youtube(file) -> Tuple[int, str]:
+def upload_video_to_youtube(file, words: List[str]) -> Tuple[int, str]:
     current_access_token = refresh_access_token(settings.YOUTUBE_AUTH_REFRESH_TOKEN)
     logger.debug("Youtube access token: ", current_access_token)
 
-    location_url = upload_video_metadata(current_access_token, file.size)
+    location_url = upload_video_metadata(current_access_token, file.size, words)
     logger.debug("Youtube file location URL: ", location_url)
 
     response = upload_video_to_url(location_url, current_access_token, file)

@@ -121,7 +121,7 @@ def upload_video(request):
         file = request.FILES['file']
         if file.size < 5242880 and words:  # 5 MB
             print("before upload")
-            status_code, video_id = TranslationVideo.upload_video(file)
+            status_code, video_id = TranslationVideo.upload_video(file, words)
 
             # video_record = TranslationVideo(author=request.user, )
 

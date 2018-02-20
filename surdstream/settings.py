@@ -184,6 +184,7 @@ if LOG_TO_FILE:
 
 # This OAuth 2.0 access scope allows an application to upload files to the
 # authenticated user's YouTube channel, but doesn't allow other types of access.
+YOUTUBE_UPLOAD_URI = 'https://www.googleapis.com/upload/youtube/v3/videos'
 YOUTUBE_UPLOAD_SCOPE = 'https://www.googleapis.com/auth/youtube.upload'
 YOUTUBE_AUTH_CLIENT_ID = config('YOUTUBE_AUTH_CLIENT_ID')
 YOUTUBE_AUTH_CLIENT_SECRET = config('YOUTUBE_AUTH_CLIENT_SECRET')
