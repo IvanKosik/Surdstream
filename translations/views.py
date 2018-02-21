@@ -10,10 +10,11 @@ from django.contrib.auth import (
     logout as auth_logout,
     authenticate as auth
 )
+from django.core.mail import EmailMessage
 from django.contrib.sites.shortcuts import get_current_site
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
-from django.template.loader import render_to_string
+from django.template.loader import render_to_string, get_template
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_text
 
@@ -60,13 +61,19 @@ def signup(request):
             user.save()
             current_site = get_current_site(request)
             subject = 'Activate Your SurdStream Account'
-            message = render_to_string('registration/activation-email.html', {
+            context = {
                 'user': user,
                 'domain': current_site.domain,
                 'uid': urlsafe_base64_encode(force_bytes(user.pk)).decode(),
                 'token': account_activation_token.make_token(user),
-            })
-            user.email_user(subject, message)
+            }
+            txt_message = render_to_string('registration/activation-email.html', context)
+            # user.email_user(subject, txt_message)
+
+            html_message = get_template('registration/activation-email.html').render(context)
+            email = EmailMessage(subject, html_message, to=[user.email])
+            email.content_subtype = 'html'
+            email.send()
         return JsonResponse({'user_id': request.user.id,
                              'field_errors': signup_form.errors.as_json()})
     raise Http404("Only accepts AJAX, method POST")
