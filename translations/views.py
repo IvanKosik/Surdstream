@@ -60,7 +60,7 @@ def signup(request):
             user.save()
             current_site = get_current_site(request)
             subject = 'Activate Your SurdStream Account'
-            message = render_to_string('accounts/activation_email.html', {
+            message = render_to_string('registration/activation-email.html', {
                 'user': user,
                 'domain': current_site.domain,
                 'uid': urlsafe_base64_encode(force_bytes(user.pk)).decode(),
@@ -92,8 +92,9 @@ def activate(request, uidb64, token):
         user.is_active = True
         user.email_confirmed = True
         user.save()
-        auth_login(request, user)
-    return JsonResponse({'user_id': request.user.id})
+        # auth_login(request, user)
+        return render(request, 'registration/email-confirmed.html', {'username': user.username})
+    return Http404("Invalid email confirmation link")
 
 
 def login(request):

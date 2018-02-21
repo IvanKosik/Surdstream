@@ -1,0 +1,9 @@
+{% autoescape off %}
+<h1><a href="http://www.surd.stream"><strong>SurdStream</strong></a></h1>
+
+Hi, {{ user.username }}!
+
+Please click on this <a href="http://{{ domain }}{% url 'activate' uidb64=uid token=token %}">link</a>
+to confirm your registration on surd.stream.
+
+{% endautoescape %}
