@@ -36,9 +36,8 @@ class TranslationVideo(models.Model):
     upload_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        #words_str = '[' + ', '.join(self.words.all()) + ']'
-        # print("IDDD: ", self.youtube_id)
-        return 'Video ' + 'some_id '# + words_str  # str(self.youtube_id.name) + ' ' + words_str
+        words_str = '[' + ', '.join(map(str, self.words.all())) + ']'
+        return 'Video ' + self.youtube_id + ' ' + words_str
 
     @staticmethod
     def new_videos():

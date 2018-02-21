@@ -154,12 +154,19 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 # EMAIL_USE_TLS = True
 # DEFAULT_FROM_EMAIL = 'brainsnitch@gmail.com'
 
-EMAIL_PORT = 587
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = config('EMAIL_HOST_USER', default='')
-EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', default='')
+#EMAIL_PORT = 587
+#EMAIL_HOST = 'smtp.gmail.com'
+#EMAIL_HOST_USER = config('EMAIL_HOST_USER', default='')
+#EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', default='')
 #%DEFAULT_FROM_EMAIL = 'postmaster@surdstream.herokuapp.com'
+#EMAIL_USE_TLS = True
+
+EMAIL_HOST = config('MAILGUN_SMTP_SERVER', default='smtp.mailgun.org')
+EMAIL_PORT = config('MAILGUN_SMTP_PORT', default=587, cast=int)
+EMAIL_HOST_USER = config('MAILGUN_SMTP_LOGIN', default='')
+EMAIL_HOST_PASSWORD = config('MAILGUN_SMTP_PASSWORD', default='')
 EMAIL_USE_TLS = True
+
 
 LOG_TO_FILE = config('LOG_TO_FILE', default=False, cast=bool)
 if LOG_TO_FILE:
