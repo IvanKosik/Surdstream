@@ -10,11 +10,11 @@ from django.contrib.auth import (
     logout as auth_logout,
     authenticate as auth
 )
-from django.core.mail import EmailMessage
+from django.core.mail import send_mail
 from django.contrib.sites.shortcuts import get_current_site
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
-from django.template.loader import render_to_string, get_template
+from django.template.loader import render_to_string
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_text
 
@@ -67,13 +67,9 @@ def signup(request):
                 'uid': urlsafe_base64_encode(force_bytes(user.pk)).decode(),
                 'token': account_activation_token.make_token(user),
             }
-            txt_message = render_to_string('registration/activation-email.html', context)
-            # user.email_user(subject, txt_message)
-
-            html_message = get_template('registration/activation-email.html').render(context)
-            email = EmailMessage(subject, html_message, to=[user.email])
-            email.content_subtype = 'html'
-            email.send()
+            txt_message = render_to_string('registration/activation-email.txt', context)
+            html_message = render_to_string('registration/activation-email.html', context)
+            send_mail(subject, txt_message, recipient_list=[user.email], html_message=html_message)
         return JsonResponse({'user_id': request.user.id,
                              'field_errors': signup_form.errors.as_json()})
     raise Http404("Only accepts AJAX, method POST")
