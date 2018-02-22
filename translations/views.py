@@ -17,6 +17,7 @@ from django.contrib.auth.decorators import login_required
 from django.template.loader import render_to_string
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_text
+from django.conf import settings
 
 
 @ensure_csrf_cookie
@@ -69,7 +70,8 @@ def signup(request):
             }
             txt_message = render_to_string('registration/activation-email.txt', context)
             html_message = render_to_string('registration/activation-email.html', context)
-            send_mail(subject, txt_message, recipient_list=[user.email], html_message=html_message)
+            send_mail(subject, txt_message, from_email=settings.DEFAULT_FROM_EMAIL,
+                      recipient_list=[user.email], html_message=html_message)
         return JsonResponse({'user_id': request.user.id,
                              'field_errors': signup_form.errors.as_json()})
     raise Http404("Only accepts AJAX, method POST")
