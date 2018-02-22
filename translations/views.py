@@ -53,6 +53,19 @@ def index(request):
     return render(request, 'translations/index.html', context)
 
 
+def search_results(request):
+    if request.method == 'GET':
+        search_start = request.GET['search_query']
+        result_videos = TranslationVideo.objects.filter(
+            words__word_text__istartswith=search_start).order_by('-votes')[:8]
+        videos_json_list = [{'id': v.id,
+                             'youtube_id': v.youtube_id,
+                             'author': v.author.username,
+                             'votes': v.votes} for v in result_videos]
+        return JsonResponse({'videos': videos_json_list})
+    raise Http404("Only accepts AJAX, method GET")
+
+
 def signup(request):
     if request.method == 'POST':
         signup_form = SignUpForm(request.POST)
