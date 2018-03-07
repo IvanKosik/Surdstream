@@ -34,6 +34,7 @@ ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
 INSTALLED_APPS = [
     'translations.apps.TranslationsConfig',
+    'rest_framework',
     'widget_tweaks',
     'django.contrib.admin',
     'django.contrib.auth',

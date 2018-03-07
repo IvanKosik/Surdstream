@@ -1,6 +1,7 @@
 python_decouple==3.1
 dj_database_url==0.4.2
 Django==2.0.1
+djangorestframework==3.7.7
 requests==2.18.4
 django-widget-tweaks==1.4.1
 gunicorn==19.7.1
